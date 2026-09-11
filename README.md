@@ -269,8 +269,8 @@ is in [docs/EVALUATION.md](docs/EVALUATION.md).
 
 ## A note on the results
 
-The figures above come from one corpus of 38 repositories, cloned on
-**19 May 2026**. How much the fixer removes depends on the starting quality of
+The figures above come from one corpus of 38 repositories, captured at a fixed
+point in time. How much the fixer removes depends on the starting quality of
 the `.feature` files, which varies a great deal between projects, so a different
 repository or corpus will give different figures. They characterise the tool on
 real-world specifications rather than promise a fixed percentage on any given
@@ -291,7 +291,8 @@ for the filename-conflict comparison are archived on Zenodo:
 > **Video demonstration:** [TBD]
 
 This repository carries the headline figures, the per-repository table, a sample
-of the per-file rows, and the corpus manifest. Column meanings are documented in
+of the per-file rows, and the list of files measured. Column meanings are
+documented in
 [results/README.md](results/README.md).
 
 ---
@@ -341,8 +342,8 @@ UnifiedBDDLinter/
 |   |-- sample_results.csv             excerpt showing the column layout
 |   `-- README.md           column dictionary and how to read each file
 |-- corpus/
-|   |-- MANIFEST.csv        every file measured, with its fingerprint
-|   `-- materialise.py      builds a working copy from the manifest
+|   |-- MANIFEST.csv        every file measured, with its identifying hash
+|   `-- materialise.py      builds a working copy from that list
 `-- docs/
     |-- RULES.md            all 28 rules, and how each quality rule decides
     |-- DESIGN.md           architecture and the safe-fix boundary
