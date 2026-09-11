@@ -1,0 +1,9 @@
+# Dependencies of the EVALUATION HARNESS only.
+#
+# The linter and the auto-fixer need none of this. They run on a bare
+# Python 3.8+ with nothing installed, which a test in the suite enforces.
+# Install these only if you intend to reproduce the differential study.
+
+tqdm>=4.62.0          # progress reporting on long runs
+matplotlib>=3.5.0     # figure generation
+numpy>=1.21.0         # used by the figure scripts

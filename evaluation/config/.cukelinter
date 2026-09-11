@@ -1,0 +1,43 @@
+# CukeLinter Configuration
+# Linting rules for Gherkin feature files
+
+# Rules to disable (commented out = enabled)
+# DisablesTags:
+#   - rule_type: something
+
+# Rules to enable with custom configurations
+Rules:
+  - rule_type: PlaceholderStepName
+    enabled: true
+  - rule_type: ElementWithNoName
+    enabled: true
+  - rule_type: InvalidStepFlowStep
+    enabled: true
+  - rule_type: ScenarioWithCommonSteps
+    enabled: true
+  - rule_type: LowFeatureNameConvention
+    enabled: true
+  - rule_type: LowScenarioNameConvention
+    enabled: true
+  - rule_type: LowStepNameConvention
+    enabled: true
+  - rule_type: MisplacedTagsOnStepDefinition
+    enabled: true
+  - rule_type: FeatureWithoutScenarios
+    enabled: true
+  - rule_type: ScenarioWithoutSteps
+    enabled: true
+  - rule_type: TagOnFeature
+    enabled: true
+  - rule_type: MissingExampleScenarioOutlineExample
+    enabled: true
+  - rule_type: EmptyFeatureDescription
+    enabled: true
+
+# Severity levels: informational, warning, error
+DefaultSeverity: warning
+
+# Whitelist (files/patterns to exclude)
+# Whitelist:
+#   - tmp
+#   - temp

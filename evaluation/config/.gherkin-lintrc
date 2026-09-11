@@ -1,0 +1,26 @@
+{
+  "no-trailing-spaces": "on",
+  "no-multiple-empty-lines": "on",
+  "new-line-at-eof": ["on", "yes"],
+  "indentation": [
+    "on",
+    {
+      "Feature": 0,
+      "Background": 0,
+      "Scenario": 0,
+      "Step": 2,
+      "Examples": 0,
+      "example": 2
+    }
+  ],
+  "no-unnamed-features": "on",
+  "no-unnamed-scenarios": "on",
+  "file-name": ["on", {"style": "kebab-case"}],
+  "no-dupe-scenario-names": "on",
+  "keywords-in-logical-order": "on",
+  "only-one-when": "on",
+  "scenario-size": ["on", {"steps-length": {"Background": 10, "Scenario": 20}}],
+  "name-length": ["on", {"Feature": 80, "Scenario": 80, "Step": 100}],
+  "no-empty-background": "on",
+  "no-empty-file": "on"
+}
