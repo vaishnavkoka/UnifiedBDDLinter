@@ -1,0 +1,65 @@
+{
+  "rules": {
+    "enabled": true,
+    "disabled": [],
+    "severity_overrides": {
+      "S001": "warning",
+      "S002": "info",
+      "S003": "info",
+      "S004": "error",
+      "S006": "warning",
+      "ST001": "error",
+      "ST002": "error",
+      "ST003": "error",
+      "ST004": "error",
+      "ST005": "warning",
+      "ST006": "warning",
+      "W001": "warning",
+      "W002": "error",
+      "W003": "error",
+      "W004": "error",
+      "W005": "info",
+      "W006": "warning",
+      "Q001": "warning",
+      "Q002": "info",
+      "Q003": "info",
+      "Q004": "info",
+      "Q005": "info",
+      "Q006": "info",
+      "Q007": "warning",
+      "Q008": "info"
+    }
+  },
+  "limits": {
+    "max_feature_name": 80,
+    "max_scenario_name": 80,
+    "max_step_length": 100,
+    "max_steps_per_scenario": 10,
+    "min_steps_per_scenario": 3
+  },
+  "formatting": {
+    "indent_style": "space",
+    "indent_size": 2,
+    "end_of_line": "lf",
+    "insert_final_newline": true,
+    "trim_trailing_whitespace": true,
+    "max_line_length": 0
+  },
+  "quality": {
+    "enforce_business_language": true,
+    "detect_implementation_details": true,
+    "detect_mock_data": true,
+    "detect_vague_language": true
+  },
+  "output": {
+    "format": "text",
+    "colors": true,
+    "detailed_suggestions": true
+  },
+  "ignore_patterns": [
+    "node_modules/**",
+    "dist/**",
+    ".git/**",
+    "target/**"
+  ]
+}
