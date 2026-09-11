@@ -307,9 +307,35 @@ DISPATCH = {"lint": cmd_lint, "fix": cmd_fix, "rules": cmd_rules,
             "config": cmd_config, "version": cmd_version}
 
 
+def _make_output_encoding_safe() -> None:
+    """Ensure stdout and stderr can carry any character a .feature file holds.
+
+    On Windows, Python uses the console encoding when stdout is a terminal but
+    the locale encoding -- typically cp1252 -- when it is a pipe or a file. A
+    report containing a character cp1252 cannot represent then raises
+    UnicodeEncodeError and the command dies.
+
+    That is not hypothetical. `fix --dry-run` prints an arrow, and redirecting
+    it to a file on Windows crashed the tool. Feature files in the corpus carry
+    Dutch, Russian and Japanese text, so linting them would fail the same way.
+
+    `errors="replace"` rather than "strict": a report that shows one character
+    as a substitute is far better than a report that does not appear at all.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is None:
+            continue                      # already replaced, or not a text stream
+        try:
+            reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass                          # detached or closed; nothing to do
+
+
 def main(argv=None) -> int:
     """Entry point. Returns an exit code rather than calling sys.exit, so the
     test suite can invoke it directly and assert on the result."""
+    _make_output_encoding_safe()
     parser = build_parser()
     args = parser.parse_args(argv)
     if not args.command:

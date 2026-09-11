@@ -273,3 +273,46 @@ class QualityMechanismDocs(unittest.TestCase):
         self.assertIn("len(name) < 10", QUALITY_MECHANISM["Q005"])
         self.assertIn("len(name) < 10", engine,
                       "Q005 prose cites len(name) < 10; engine.py disagrees")
+
+
+class OutputEncoding(unittest.TestCase):
+    """Reports must survive a narrow output encoding.
+
+    On Windows, stdout uses the locale encoding -- typically cp1252 -- whenever
+    it is a pipe rather than a console. A report carrying a character that
+    encoding cannot represent then raises UnicodeEncodeError and the command
+    dies rather than printing.
+
+    Continuous integration caught exactly this: `fix --dry-run` prints an arrow,
+    and all three Windows runners failed on it while Linux and macOS passed.
+    These tests force the same condition on any platform by running the tool
+    with PYTHONIOENCODING set to a narrow codec.
+    """
+
+    def _run(self, *args, encoding="cp1252"):
+        environment = dict(os.environ, PYTHONIOENCODING=f"{encoding}:strict")
+        return subprocess.run(
+            [sys.executable, str(ROOT / "tools" / "bddlint.py"), *args],
+            capture_output=True, text=True, env=environment)
+
+    def test_dry_run_survives_a_narrow_stdout_encoding(self):
+        """The arrow in the dry-run message is outside cp1252."""
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "f.feature"
+            target.write_text("Feature: Trailing space   \n", encoding="utf-8")
+            proc = self._run("fix", str(target), "--dry-run")
+            self.assertEqual(proc.returncode, 0,
+                             f"crashed under cp1252 stdout:\n{proc.stderr}")
+
+    def test_report_survives_a_narrow_stdout_encoding(self):
+        """Feature files carry text no single-byte codec can represent."""
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "g.feature"
+            target.write_text(
+                "Feature: テスト функция\n"
+                "  Scenario: しあわせ\n"
+                "    Given a step   \n",
+                encoding="utf-8")
+            proc = self._run("lint", str(target))
+            self.assertIn(proc.returncode, (0, 1),
+                          f"crashed under cp1252 stdout:\n{proc.stderr}")

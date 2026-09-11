@@ -44,7 +44,7 @@ cd UnifiedBDDLinter
 
 python3 tools/linter.py examples/                     # report
 python3 tools/auto_fix.py examples/ -o fixed/         # repair, into a new directory
-python3 tests/run_tests.py                      # 78 tests
+python3 tests/run_tests.py                      # 80 tests
 ```
 
 There is no `pip install` step and no `requirements.txt` at the root. The
@@ -314,7 +314,7 @@ UnifiedBDDLinter/
 |       |-- reporting.py    text, JSON and SARIF output
 |       |-- cli.py          argument parsing for every entry point
 |       `-- _compat.py      shared plumbing for the three entry points
-|-- tests/                  78 tests and their fixtures, no dependencies
+|-- tests/                  80 tests and their fixtures, no dependencies
 |-- examples/               sample .feature files and a walkthrough
 |-- config/                 .unified-lintrc.json templates, default and strict
 |-- scripts/
