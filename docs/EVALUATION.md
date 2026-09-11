@@ -53,7 +53,7 @@ One row per file, 16 columns:
 
 The text columns contain embedded newlines, which is valid CSV but means `wc -l`
 reports far more lines than records. Use a CSV reader, or
-[../demo/inspect_run.py](../demo/inspect_run.py).
+[../tools/inspect_run.py](../tools/inspect_run.py).
 
 ## Verifying that repairs preserve meaning
 
@@ -86,11 +86,59 @@ both files and compare. If they are equal, every difference was whitespace.
 - of the 19,492 files the parser can process, **19,491 (99.99%)** produce an
   identical model after repair
 
-Per-repository figures for all 38 are in
-[../results/table1_repositories.csv](../results/table1_repositories.csv).
+Per-repository figures for all 38 are tabulated below.
 
 **The three counts are not comparable to one another and must never be summed.**
 Each linter has its own rule set. Compare a linter only against itself.
+
+## Evaluated repositories
+
+All 38, with the reduction in `gherkin-lint` violations after repair.
+The same data is in [../results/table1_repositories.csv](../results/table1_repositories.csv).
+
+| Repository | Files | Before → After | Reduction |
+|---|--:|--:|--:|
+| [keygen-sh/keygen-api](https://github.com/keygen-sh/keygen-api) | 218 | 80,970 → 1,679 | 97.9% |
+| [Novus-Engine/novuspack](https://github.com/Novus-Engine/novuspack) | 1,399 | 48,827 → 1,975 | 96.0% |
+| [CriminalInjuriesCompensationAuthority/q-templates-application](https://github.com/CriminalInjuriesCompensationAuthority/q-templates-application) | 512 | 104,115 → 4,681 | 95.5% |
+| [opencypher/openCypher](https://github.com/opencypher/openCypher) | 440 | 24,994 → 1,182 | 95.3% |
+| [bdewey/git-stack](https://github.com/bdewey/git-stack) | 205 | 4,376 → 287 | 93.4% |
+| [HarrisClover/RequireCEG](https://github.com/HarrisClover/RequireCEG) | 1,225 | 39,364 → 2,703 | 93.1% |
+| [reqnroll/Reqnroll.ExploratoryTestProjects](https://github.com/reqnroll/Reqnroll.ExploratoryTestProjects) | 1,214 | 158,090 → 12,136 | 92.3% |
+| [csu0077/project3_testing](https://github.com/csu0077/project3_testing) | 35 | 1,229 → 97 | 92.1% |
+| [git-town/git-town](https://github.com/git-town/git-town) | 1,345 | 22,905 → 1,856 | 91.9% |
+| [Corvusoft/restq](https://github.com/Corvusoft/restq) | 229 | 29,662 → 2,522 | 91.5% |
+| [projectestac/alexandria](https://github.com/projectestac/alexandria) | 1,064 | 63,910 → 5,478 | 91.4% |
+| [inukshuk/citeproc](https://github.com/inukshuk/citeproc) | 780 | 6,695 → 739 | 89.0% |
+| [kabisa/books](https://github.com/kabisa/books) | 20 | 705 → 80 | 88.7% |
+| [iriusrisk/bdd-security](https://github.com/iriusrisk/bdd-security) | 11 | 441 → 51 | 88.4% |
+| [buildingSMART/ifc-gherkin-rules](https://github.com/buildingSMART/ifc-gherkin-rules) | 101 | 1,567 → 193 | 87.7% |
+| [Sylius/Sylius](https://github.com/Sylius/Sylius) | 835 | 26,992 → 3,344 | 87.6% |
+| [cchitsiang/bdd](https://github.com/cchitsiang/bdd) | 1,262 | 36,448 → 4,528 | 87.6% |
+| [inventorypapa/free-dropshipping-automation-software](https://github.com/inventorypapa/free-dropshipping-automation-software) | 643 | 18,547 → 2,310 | 87.5% |
+| [trydirect/sylius](https://github.com/trydirect/sylius) | 646 | 17,085 → 2,159 | 87.4% |
+| [SU-SWS/linky_clicky](https://github.com/SU-SWS/linky_clicky) | 462 | 16,131 → 2,236 | 86.1% |
+| [skgopinath/featuretagselector](https://github.com/skgopinath/featuretagselector) | 300 | 2,100 → 300 | 85.7% |
+| [maurafitz/coop-workshift-app](https://github.com/maurafitz/coop-workshift-app) | 21 | 832 → 120 | 85.6% |
+| [local-web-services/local-web-services](https://github.com/local-web-services/local-web-services) | 1,936 | 536,464 → 90,198 | 83.2% |
+| [ashwanth1109/gherkin-feature-parser](https://github.com/ashwanth1109/gherkin-feature-parser) | 843 | 20,310 → 3,518 | 82.7% |
+| [rpm-software-management/ci-dnf-stack](https://github.com/rpm-software-management/ci-dnf-stack) | 365 | 17,419 → 3,208 | 81.6% |
+| [pherkin/test-bdd-cucumber-perl](https://github.com/pherkin/test-bdd-cucumber-perl) | 11 | 363 → 70 | 80.7% |
+| [openshift/verification-tests](https://github.com/openshift/verification-tests) | 235 | 30,127 → 6,584 | 78.1% |
+| [learningequality/kolibri](https://github.com/learningequality/kolibri) | 729 | 33,578 → 7,991 | 76.2% |
+| [hmcts/ia-ccd-e2e-tests](https://github.com/hmcts/ia-ccd-e2e-tests) | 298 | 63,232 → 15,171 | 76.0% |
+| [Rotbarsch/NatLaRestTest](https://github.com/Rotbarsch/NatLaRestTest) | 21 | 367 → 89 | 75.7% |
+| [vanderbilt-redcap/redcap_rsvc](https://github.com/vanderbilt-redcap/redcap_rsvc) | 347 | 25,236 → 6,766 | 73.2% |
+| [actiontech/dble-test-suite](https://github.com/actiontech/dble-test-suite) | 264 | 33,793 → 9,159 | 72.9% |
+| [esg4aspl/SPL-ESG-Examples](https://github.com/esg4aspl/SPL-ESG-Examples) | 807 | 7,352 → 2,421 | 67.1% |
+| [Sahamati/certification-framework](https://github.com/Sahamati/certification-framework) | 353 | 2,489 → 1,108 | 55.5% |
+| [BRP-API/Haal-Centraal-BRP-bevragen](https://github.com/BRP-API/Haal-Centraal-BRP-bevragen) | 373 | 7,951 → 4,374 | 45.0% |
+| [SoftEng-UniGE/BEWT-Specifications](https://github.com/SoftEng-UniGE/BEWT-Specifications) | 284 | 2,807 → 1,827 | 34.9% |
+| [bcgov/onRouteBCSpecification](https://github.com/bcgov/onRouteBCSpecification) | 205 | 1,559 → 1,227 | 21.3% |
+| [saqibrizvi11/SH2_contactMaps](https://github.com/saqibrizvi11/SH2_contactMaps) | 232 | 1,604 → 1,604 | 0.0% |
+| **Total (38)** | **20,270** | **1,490,636 → 205,971** | **86.2%** |
+
+---
 
 ## The filename conflict
 

@@ -65,4 +65,4 @@ described in [../docs/EVALUATION.md](../docs/EVALUATION.md).
 
 A full results file contains embedded newlines inside its violation-text columns,
 which is valid CSV but means `wc -l` reports far more lines than there are
-records. Use a real CSV reader, or [../demo/inspect_run.py](../demo/inspect_run.py).
+records. Use a real CSV reader, or [../tools/inspect_run.py](../tools/inspect_run.py).

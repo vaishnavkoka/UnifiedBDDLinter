@@ -3,7 +3,7 @@
 **A linter and form-preserving auto-fixer for Gherkin `.feature` files.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Tests](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml/badge.svg)](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml)
+[![Tests](https://img.shields.io/badge/tests-78%20passing-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 
 A Gherkin `.feature` file is two things at once: a requirement a business
@@ -27,6 +27,7 @@ test means.
 - [Usage](#usage)
   - [Lint](#lint)
   - [Fix](#fix)
+  - [Validate](#validate)
   - [Configure](#configure)
 - [Results](#results)
 - [The two incumbent linters are mutually unsatisfiable](#the-two-incumbent-linters-are-mutually-unsatisfiable)
@@ -132,8 +133,9 @@ below accounts for much of the rest.
 
 ![Per-repository reduction against size](results/figures/fig3_efficacy_vs_size.png)
 
-The per-repository breakdown for all 38 is in
-[results/table1_repositories.csv](results/table1_repositories.csv).
+The per-repository breakdown for all 38 is tabulated in
+[docs/EVALUATION.md](docs/EVALUATION.md#evaluated-repositories), and available as
+data in [results/table1_repositories.csv](results/table1_repositories.csv).
 
 ### Repairs are verified, not asserted
 
@@ -196,6 +198,17 @@ python3 auto_fix.py features/ --dry-run
 
 The fixer always writes to a new directory and never modifies its input.
 
+### Validate
+
+Differential lint–fix–lint over a corpus, measured against two independent
+linters. This is a separate harness rather than part of the tool, and it is the
+only mode that needs anything installed — see
+[Reproducing the evaluation](#reproducing-the-evaluation).
+
+```bash
+python3 evaluation/phase3_bdd_pipeline_full.py -r <repos-dir> -o out/
+```
+
 ### Configure
 
 Copy a template to your project root as `.unified-lintrc.json`:
@@ -233,7 +246,7 @@ and tables itself. Add `--no-oracles` to measure our tool alone, requiring
 neither Node nor Ruby.
 
 A results file for the full corpus is around 700 MB, which no editor will open.
-[demo/inspect_run.py](demo/inspect_run.py) browses one without loading it.
+[tools/inspect_run.py](tools/inspect_run.py) browses one without loading it.
 
 ---
 
@@ -308,7 +321,9 @@ UnifiedBDDLinter/
 |-- examples/               sample .feature files and a walkthrough
 |-- config/                 .unified-lintrc.json templates, default and strict
 |-- tools/
-|   `-- generate_rule_docs.py   regenerates docs/RULES.md from the catalogue
+|   |-- generate_rule_docs.py   regenerates docs/RULES.md from the catalogue
+|   |-- side_by_side.py         renders a repair and checks no word changed
+|   `-- inspect_run.py          browses a results file too large for an editor
 |-- evaluation/
 |   |-- phase3_bdd_pipeline_full.py   differential lint-fix-lint harness
 |   |-- verify_semantics.py           re-parses repairs and compares models
@@ -318,10 +333,6 @@ UnifiedBDDLinter/
 |   |-- analysis/                     figure and table generators
 |   |-- config/                       .gherkin-lintrc and .cukelinter
 |   `-- requirements.txt              tqdm and matplotlib, harness only
-|-- demo/
-|   |-- DEMO.md             the demonstration script, command by command
-|   |-- side_by_side.py     renders a repair and checks no word changed
-|   `-- inspect_run.py      browses a results file too large for an editor
 |-- results/
 |   |-- figures/            workflow, before and after, per-repository
 |   |-- summary.csv         corpus totals and per-file outcomes
@@ -353,7 +364,6 @@ Everything at the top level is something you run. The implementation lives in
 - [docs/DESIGN.md](docs/DESIGN.md) — architecture and the safe-fix boundary
 - [docs/EVALUATION.md](docs/EVALUATION.md) — corpus construction, method, per-repository results
 - [docs/FAQ.md](docs/FAQ.md) — questions the numbers invite
-- [demo/DEMO.md](demo/DEMO.md) — the demonstration script, command by command
 
 ---
 
