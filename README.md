@@ -1,19 +1,23 @@
-# UnifiedBDDLinter
+# UnifiedBDDLinter: A Tool to Detect and Remediate Quality Anti-Patterns in Gherkin Feature Files
 
 **A linter and form-preserving auto-fixer for Gherkin `.feature` files.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20795204-blue.svg)](https://doi.org/10.5281/zenodo.20795204)
 
-A Gherkin `.feature` file is two things at once: a requirement a business
-stakeholder reads, and an executable test a runtime binds step definitions to.
-Its quality is usually policed by a handful of separate linters that check
-disjoint concerns, disagree with each other, and only ever report problems.
+Gherkin specifications are both human-readable requirements and executable tests, but their quality is usually policed by a handful of separate, partly contradictory linters that only report problems. UnifiedBDDLinter brings style, structure, workflow, and business-readability checks together into a single engine. It also provides an auto-fixer that automatically resolves issues that can be safely corrected mechanically, while leaving anything that could change the meaning or behavior of a test for a human to review.
 
-UnifiedBDDLinter brings style, structure, workflow and business-readability
-checks under a single engine, and adds an auto-fixer that repairs what can be
-repaired mechanically while refusing to touch anything that would change what a
-test means.
+# UnifiedBDDLinter: A Tool to Detect and Remediate Quality Anti-Patterns in Gherkin Feature Files
+
+Gherkin specifications are both human-readable requirements and executable
+tests, but their quality is usually policed by a handful of separate, partly
+contradictory linters that only report problems and never fix them.
+UnifiedBDDLinter brings style, structure, workflow, and business-readability
+checks under a single engine, and adds an auto-fixer that repairs the mechanical
+issues it finds while leaving anything that would change a test's meaning to a
+human.
+
 
 ![Workflow](docs/bddlinter.drawio-size-changed.svg)
 
