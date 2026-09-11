@@ -25,7 +25,7 @@ Check these **silently**. Only step 8 needs them, and step 8 introduces them on
 camera as independent witnesses. Verifying them at the top would teach the viewer
 they are prerequisites — the opposite of true. Steps 1–7 run on a bare Python
 3.8+ with nothing installed. That ordering mirrors the artifact itself, where
-`tool/` is standard-library only and `validation-harness/` is separate.
+the linter is standard-library only and `evaluation/` is separate.
 
 ## VS Code settings — step 7 is dead without the first one
 
@@ -43,7 +43,7 @@ window after editing (`Ctrl+Shift+P` → *Developer: Reload Window*).
 
 ~150 columns. Reset between takes:
 
-    cd /home/vaishnavkoka/RE4BDD/UnifiedBDDLinter-Artifact && rm -rf demo
+    rm -rf demo/onRouteBCSpecification demo/fixed demo/out
 
 Only steps 1 and 8 take real time — the clone, and ~30 seconds with a progress
 bar. Everything else is instant, so don't script pauses that aren't there.
@@ -104,7 +104,7 @@ head -5 "$F"
 # Step 3 — Lint: the subset the oracles corroborate
 
 ```bash
-python3 tool/cli.py "$F"
+python3 cli.py "$F"
 ```
 
 → `Summary: 1 file, 11 violation(s), 9 error(s)`
@@ -120,7 +120,7 @@ python3 tool/cli.py "$F"
 # Step 4 — Lint: the full 28-rule engine  ← your thesis
 
 ```bash
-python3 tool/linter.py "$F"
+python3 linter.py "$F"
 ```
 
 → `Summary: 1 file, 13 violation(s), 10 error(s)`
@@ -155,7 +155,7 @@ The two additions:
 # Step 5 — Repair
 
 ```bash
-python3 tool/auto_fix.py "$F" -o demo/fixed
+python3 auto_fix.py "$F" -o demo/fixed
 ls demo/fixed/
 ```
 
@@ -175,7 +175,7 @@ ls demo/fixed/
 # Step 6 — Re-lint: the safe-fix boundary
 
 ```bash
-python3 tool/linter.py demo/fixed/staff_apply_for_single_trip_oversize_stos_permit.feature
+python3 linter.py demo/fixed/staff_apply_for_single_trip_oversize_stos_permit.feature
 ```
 
 → `Summary: 1 file, 1 violation(s), 0 error(s)`
@@ -210,7 +210,7 @@ code --diff "$F" demo/fixed/staff_apply_for_single_trip_oversize_stos_permit.fea
 the `Feature:` text unchanged.)*
 
 ```bash
-python3 misc/demo/side_by_side.py "$F" \
+python3 demo/side_by_side.py "$F" \
     demo/fixed/staff_apply_for_single_trip_oversize_stos_permit.feature | tail -4
 ```
 
@@ -250,7 +250,7 @@ cuke_linter --version         # 1.4.0               -- Ruby
 > lints all three again and compares."
 
 ```bash
-python3 validation-harness/phase3_bdd_pipeline_full.py \
+python3 evaluation/phase3_bdd_pipeline_full.py \
     -r demo/onRouteBCSpecification -o demo/out -w 8 --open
 ```
 

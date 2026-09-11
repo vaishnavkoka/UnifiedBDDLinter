@@ -11,8 +11,8 @@ Turns one run's `results.csv` into the paper's figures and tables.
 | `make_all.py` | all of the above, plus `SUMMARY.md` | — |
 
 ```bash
-python3 analysis/make_all.py ../artifacts/runs/<run>
-python3 analysis/aggregate.py ../artifacts/runs/<run>/results.csv   # numbers only
+python3 evaluation/analysis/make_all.py <run-dir>
+python3 evaluation/analysis/aggregate.py <run-dir>/results.csv   # numbers only
 ```
 
 Every script takes `<results.csv> <outdir>` and reads nothing but that CSV, so
