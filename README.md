@@ -370,4 +370,4 @@ See [CITATION.cff](CITATION.cff).
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+Released under the MIT License. See [LICENSE](LICENSE).
