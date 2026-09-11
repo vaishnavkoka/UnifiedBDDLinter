@@ -245,10 +245,7 @@ A results file for the full corpus is around 700 MB, which no editor will open.
 ## Limitations
 
 **English keywords only.** The linter is a line-based scan and recognises only
-English Gherkin keywords. A file using a `# language:` header — `Functionaliteit:`
-rather than `Feature:` — is reported as lacking a feature declaration. The rule
-affected is detect-only, so such files are never modified. Replacing the scan
-with the official Gherkin AST is the first item of planned work.
+English Gherkin keywords.
 
 **Heuristic readability checks.** The business-readability rules are keyword and
 shape matches rather than linguistic analysis, which keeps the tool
