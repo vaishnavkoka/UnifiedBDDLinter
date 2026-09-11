@@ -3,7 +3,6 @@
 **A linter and form-preserving auto-fixer for Gherkin `.feature` files.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-78%20passing-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 
 A Gherkin `.feature` file is two things at once: a requirement a business
