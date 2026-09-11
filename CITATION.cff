@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this tool, please cite the paper below."
+title: "UnifiedBDDLinter"
+abstract: >-
+  A dependency-free linter and form-preserving auto-fixer for Gherkin
+  .feature files, implementing 28 rules across Style, Structure, Workflow
+  and Quality families. Repairs only defects recoverable from the file
+  itself, so a specification is never rewritten to silence a rule.
+version: "1.0"
+license: MIT
+repository-code: "https://github.com/vaishnavkoka/UnifiedBDDLinter"
+type: software
+authors:
+  - family-names: Koka
+    given-names: Vaishnav
+    affiliation: "Indian Institute of Technology Gandhinagar"
+    email: vaishnav.koka@iitgn.ac.in
+  - family-names: Mondal
+    given-names: Shouvick
+    affiliation: "Indian Institute of Technology Gandhinagar"
+keywords:
+  - behaviour-driven development
+  - Gherkin
+  - requirements engineering
+  - static analysis
+  - automated program repair

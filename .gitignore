@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Default output directory of auto_fix.py when -o is not given
+fixed_features/
+fixed/
+
+# Evaluation runs. A full-corpus run is ~900 MB and belongs on Zenodo,
+# not in git.
+out/
+runs/
+work/
+
+# A cloned repository used while rehearsing the demonstration
+demo/onRouteBCSpecification/
+demo/fixed/
+demo/out/
+
+# Editor and OS noise
+.DS_Store
+.idea/
+.vscode/
