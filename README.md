@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Tests](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml/badge.svg)](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20795204-blue.svg)](https://doi.org/10.5281/zenodo.20795204)
 
 Gherkin specifications are both human-readable requirements and executable tests, but their quality is usually policed by a handful of separate, partly contradictory linters that only report problems. UnifiedBDDLinter brings style, structure, workflow, and business-readability checks together into a single engine. It also provides an auto-fixer that automatically resolves issues that can be safely corrected mechanically, while leaving anything that could change the meaning or behavior of a test for a human to review.
