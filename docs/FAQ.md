@@ -127,6 +127,6 @@ corpus runs to about 700 MB. That text contains newlines, and they sit inside
 quoted CSV fields — valid CSV, but `wc -l` counts them as record separators and
 reports millions of lines for twenty thousand records.
 
-Use a CSV reader, or [../tools/inspect_run.py](../tools/inspect_run.py), which
+Use a CSV reader, or [../scripts/inspect_run.py](../scripts/inspect_run.py), which
 streams the file and can render one file's violations the way the linter prints
 them.

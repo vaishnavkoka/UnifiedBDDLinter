@@ -12,16 +12,16 @@ Three files that demonstrate the distinction the tool is built around.
 
 ```bash
 # 1. Clean file: nothing to say.
-python3 ../bddlint.py lint well_formed.feature
+python3 ../tools/bddlint.py lint well_formed.feature
 
 # 2. Form defects: see them, then repair them.
-python3 ../bddlint.py lint form_defects.feature
-python3 ../bddlint.py fix  form_defects.feature --output-dir /tmp/fixed
+python3 ../tools/bddlint.py lint form_defects.feature
+python3 ../tools/bddlint.py fix  form_defects.feature --output-dir /tmp/fixed
 diff form_defects.feature /tmp/fixed/*.feature
 
 # 3. Semantic defects: reported, and deliberately NOT repaired.
-python3 ../bddlint.py lint semantic_defects.feature
-python3 ../bddlint.py fix  semantic_defects.feature --output-dir /tmp/fixed2
+python3 ../tools/bddlint.py lint semantic_defects.feature
+python3 ../tools/bddlint.py fix  semantic_defects.feature --output-dir /tmp/fixed2
 diff semantic_defects.feature /tmp/fixed2/semantic_defects.feature
 ```
 
@@ -33,7 +33,7 @@ were meant to assert.
 To see what v1.0 did instead — and what this tool refuses to do by default:
 
 ```bash
-python3 ../bddlint.py fix semantic_defects.feature --output-dir /tmp/legacy --allow-text-injection
+python3 ../tools/bddlint.py fix semantic_defects.feature --output-dir /tmp/legacy --allow-text-injection
 cat /tmp/legacy/*.feature
 ```
 

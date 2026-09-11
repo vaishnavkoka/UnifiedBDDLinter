@@ -91,7 +91,7 @@ A malformed file **warns and falls back to defaults** rather than refusing to
 run. A linter that will not lint because its configuration has a typo is worse
 than one that lints with defaults and says so.
 
-`python3 bddlint.py config` prints what actually resolved, and from where.
+`python3 tools/bddlint.py config` prints what actually resolved, and from where.
 
 ## Limitations
 

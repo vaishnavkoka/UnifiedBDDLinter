@@ -2,8 +2,8 @@
 """
 generate_rule_docs.py -- regenerate docs/RULES.md from the rule catalogue.
 
-    python3 tools/generate_rule_docs.py            write docs/RULES.md
-    python3 tools/generate_rule_docs.py --check    fail if it is out of date
+    python3 scripts/generate_rule_docs.py            write docs/RULES.md
+    python3 scripts/generate_rule_docs.py --check    fail if it is out of date
 
 The catalogue in `src/unifiedbddlinter/catalogue.py` is the single source of
 truth. Documentation that is maintained by hand alongside code drifts from it,
@@ -36,7 +36,7 @@ def render() -> str:
     """Build the complete Markdown document as a string."""
     out = ["# Rule reference", ""]
     out += ["Generated from `src/unifiedbddlinter/catalogue.py`. Do not edit by hand —",
-            "regenerate with `python3 tools/generate_rule_docs.py`.", ""]
+            "regenerate with `python3 scripts/generate_rule_docs.py`.", ""]
     out += [f"**{len(c.RULES)} rules.** {len(c.rules_in_mode(False))} run in default "
             f"mode; {len(c.fixable(True))} are safely fixable.", ""]
     out += ["## Fixability", "",
@@ -84,7 +84,7 @@ def main(argv) -> int:
         current = OUTPUT.read_text(encoding="utf-8") if OUTPUT.is_file() else ""
         if current != content:
             print("docs/RULES.md is out of date; run "
-                  "python3 tools/generate_rule_docs.py", file=sys.stderr)
+                  "python3 scripts/generate_rule_docs.py", file=sys.stderr)
             return 1
         print("docs/RULES.md is up to date")
         return 0

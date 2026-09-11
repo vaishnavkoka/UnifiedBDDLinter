@@ -20,10 +20,10 @@ Gherkin specifications are both human-readable requirements and executable tests
   - [Lint](#lint)
   - [Fix](#fix)
   - [Validate](#validate)
-  - [Configure](#configure)
+- [Configuration](#configuration)
 - [Results](#results)
 - [The two incumbent linters are mutually unsatisfiable](#the-two-incumbent-linters-are-mutually-unsatisfiable)
-- [Reproducing the evaluation](#reproducing-the-evaluation)
+- [Evaluation harness](#evaluation-harness)
 - [A note on the results](#a-note-on-the-results)
 - [Limitations](#limitations)
 - [Data availability](#data-availability)
@@ -42,8 +42,8 @@ No installation. Python 3.8 or later, standard library only.
 git clone https://github.com/vaishnavkoka/UnifiedBDDLinter.git
 cd UnifiedBDDLinter
 
-python3 linter.py examples/                     # report
-python3 auto_fix.py examples/ -o fixed/         # repair, into a new directory
+python3 tools/linter.py examples/                     # report
+python3 tools/auto_fix.py examples/ -o fixed/         # repair, into a new directory
 python3 tests/run_tests.py                      # 78 tests
 ```
 
@@ -79,12 +79,9 @@ Our rule:
 > A repair may alter **neither the words in the specification nor any string the
 > runtime binds a step definition to.**
 
-The second clause is stronger than it first appears, and one rule was withdrawn
-because of it. `W005` removes a step's trailing full stop. That invents no text,
-so it satisfies word preservation — and it is still unsafe, because step text is
-precisely the string Cucumber matches a step definition against. On a minimal
-Maven project, applying it turned a passing suite into a failing one with the
-step reported `UNDEFINED`. `W005` is now detect-only.
+The second clause is stronger than it first appears: one rule was withdrawn from
+the fixer after it was shown to break step-definition binding in a real test
+suite. [docs/DESIGN.md](docs/DESIGN.md#the-safe-fix-boundary) gives the account.
 
 Rules land in "reported" for three different reasons:
 
@@ -119,15 +116,21 @@ Evaluated on **20,270 `.feature` files from 38 public repositories**.
 **19,910 files (98.2%) improved. 338 were unchanged. No file regressed.**
 The median repository saw an 86.8% reduction, and 26 of 38 exceeded 80%.
 
+> **Note.** Public GitHub repositories evolve over time as files, tests, and
+> specifications are added, modified, or removed. Therefore, re-running the
+> analysis against the current versions of these repositories may produce
+> results that differ slightly from the figures reported here.
+
 `cuke_linter` moves least by design — its rules largely target the semantic
 concerns the fixer deliberately declines to touch, and the filename conflict
 below accounts for much of the rest.
 
 ![Per-repository reduction against size](results/figures/fig3_efficacy_vs_size.png)
 
-The per-repository breakdown for all 38 is tabulated in
-[docs/EVALUATION.md](docs/EVALUATION.md#evaluated-repositories), and available as
-data in [results/table1_repositories.csv](results/table1_repositories.csv).
+**[docs/EVALUATION.md](docs/EVALUATION.md#evaluated-repositories) tabulates all
+38 repositories individually** — the same table reported in the paper — with the
+corpus construction and method behind it. The same data is available as
+[results/table1_repositories.csv](results/table1_repositories.csv).
 
 ### Repairs are verified, not asserted
 
@@ -172,9 +175,9 @@ before/after pair. The tool ships snake_case by default, configurable via
 ### Lint
 
 ```bash
-python3 linter.py features/                   # all four families, 28 rules
-python3 cli.py features/ --format json        # the subset external linters corroborate
-python3 linter.py features/ --severity error --summary
+python3 tools/linter.py features/                   # all four families, 28 rules
+python3 tools/cli.py features/ --format json        # the subset external linters corroborate
+python3 tools/linter.py features/ --severity error --summary
 ```
 
 `linter.py` runs everything. `cli.py` runs the style/structure/workflow subset
@@ -184,8 +187,8 @@ reproducing the reported numbers.
 ### Fix
 
 ```bash
-python3 auto_fix.py features/ -o fixed/
-python3 auto_fix.py features/ --dry-run
+python3 tools/auto_fix.py features/ -o fixed/
+python3 tools/auto_fix.py features/ --dry-run
 ```
 
 The fixer always writes to a new directory and never modifies its input.
@@ -195,13 +198,15 @@ The fixer always writes to a new directory and never modifies its input.
 Differential lint–fix–lint over a corpus, measured against two independent
 linters. This is a separate harness rather than part of the tool, and it is the
 only mode that needs anything installed — see
-[Reproducing the evaluation](#reproducing-the-evaluation).
+[Evaluation harness](#evaluation-harness).
 
 ```bash
 python3 evaluation/phase3_bdd_pipeline_full.py -r <repos-dir> -o out/
 ```
 
-### Configure
+---
+
+## Configuration
 
 Copy a template to your project root as `.unified-lintrc.json`:
 
@@ -212,11 +217,11 @@ cp config/unified-lintrc.default.json .unified-lintrc.json
 It controls rule severities, per-rule enable/disable, numeric thresholds, the
 filename convention and path exclusions. The file is discovered by walking
 upward from the target, so one file at a repository root governs everything
-beneath it. `python3 bddlint.py config` prints what actually resolved.
+beneath it. `python3 tools/bddlint.py config` prints what actually resolved.
 
 ---
 
-## Reproducing the evaluation
+## Evaluation harness
 
 The differential lint–fix–lint study is run by a **separate harness** in
 [evaluation/](evaluation/). Because it measures our fixer *against* two
@@ -234,11 +239,15 @@ python3 evaluation/phase3_bdd_pipeline_full.py -r <repos-dir> -o out/
 
 `-o` is a parent directory. Each run creates its own timestamped subdirectory, so
 repeated runs never overwrite one another, and the harness generates its figures
-and tables itself. Add `--no-oracles` to measure our tool alone, requiring
-neither Node nor Ruby.
+and tables itself.
+
+`-w, --workers` sets how many files are processed in parallel, and defaults to
+the number of CPU cores available on the machine. `--no-oracles` measures our
+tool alone, requiring neither Node nor Ruby, and `--resume` continues a run that
+was interrupted.
 
 A results file for the full corpus is around 700 MB, which no editor will open.
-[tools/inspect_run.py](tools/inspect_run.py) browses one without loading it.
+[scripts/inspect_run.py](scripts/inspect_run.py) browses one without loading it.
 
 ---
 
@@ -266,8 +275,6 @@ repository or corpus will give different figures. They characterise the tool on
 real-world specifications rather than promise a fixed percentage on any given
 project.
 
-Public repositories also keep changing. Re-running against today's versions of
-these same projects will not reproduce these numbers exactly.
 [corpus/MANIFEST.csv](corpus/MANIFEST.csv) records a fingerprint for every file
 measured, so the exact contents behind these numbers stay identifiable.
 
@@ -292,11 +299,12 @@ of the per-file rows, and the corpus manifest. Column meanings are documented in
 
 ```
 UnifiedBDDLinter/
-|-- linter.py               full four-family linter, all 28 rules
-|-- cli.py                  style/structure/workflow subset, with family toggles
-|-- auto_fix.py             form-preserving auto-fixer
-|-- bddlint.py              one command with subcommands: lint, fix, rules, config
-|-- bddlint, bddlint.cmd    launchers for POSIX shells and Windows
+|-- tools/                  everything you run
+|   |-- linter.py           full four-family linter, all 28 rules
+|   |-- cli.py              style/structure/workflow subset, with family toggles
+|   |-- auto_fix.py         form-preserving auto-fixer
+|   |-- bddlint.py          one command with subcommands: lint, fix, rules, config
+|   `-- bddlint, bddlint.cmd    launchers for POSIX shells and Windows
 |-- src/
 |   `-- unifiedbddlinter/
 |       |-- engine.py       the parser and all 28 rule implementations
@@ -305,11 +313,11 @@ UnifiedBDDLinter/
 |       |-- config.py       .unified-lintrc.json discovery and resolution
 |       |-- reporting.py    text, JSON and SARIF output
 |       |-- cli.py          argument parsing for every entry point
-|       `-- _compat.py      shared plumbing for the three entry points above
+|       `-- _compat.py      shared plumbing for the three entry points
 |-- tests/                  78 tests and their fixtures, no dependencies
 |-- examples/               sample .feature files and a walkthrough
 |-- config/                 .unified-lintrc.json templates, default and strict
-|-- tools/
+|-- scripts/
 |   |-- generate_rule_docs.py   regenerates docs/RULES.md from the catalogue
 |   |-- side_by_side.py         renders a repair and checks no word changed
 |   `-- inspect_run.py          browses a results file too large for an editor
@@ -323,7 +331,7 @@ UnifiedBDDLinter/
 |   |-- config/                       .gherkin-lintrc and .cukelinter
 |   `-- requirements.txt              tqdm and matplotlib, harness only
 |-- results/
-|   |-- figures/            workflow, before and after, per-repository
+|   |-- figures/            before and after, per-repository
 |   |-- summary.csv         corpus totals and per-file outcomes
 |   |-- table1_repositories.csv/.tex   per-repository reduction, all 38
 |   |-- per_rule_violations.csv        how often each rule fired
@@ -337,13 +345,13 @@ UnifiedBDDLinter/
 `-- docs/
     |-- RULES.md            all 28 rules, and how each quality rule decides
     |-- DESIGN.md           architecture and the safe-fix boundary
-    |-- EVALUATION.md       corpus, method, per-repository results
+    |-- EVALUATION.md       corpus, method, per-repository table for all 38
     `-- FAQ.md              questions the numbers invite
 ```
 
-Everything at the top level is something you run. The implementation lives in
-`src/unifiedbddlinter/`, and the entry points are thin translators over it, so
-`linter.py` and `bddlint.py lint` do the same work through different front doors.
+`tools/` holds everything you run. `src/unifiedbddlinter/` is the implementation
+behind it, and `scripts/` holds helpers for maintaining the repository rather
+than for using the tool.
 
 ---
 
@@ -351,7 +359,7 @@ Everything at the top level is something you run. The implementation lives in
 
 - [docs/RULES.md](docs/RULES.md) — all 28 rules, and how each quality rule decides
 - [docs/DESIGN.md](docs/DESIGN.md) — architecture and the safe-fix boundary
-- [docs/EVALUATION.md](docs/EVALUATION.md) — corpus construction, method, per-repository results
+- [docs/EVALUATION.md](docs/EVALUATION.md) — corpus construction, method, and the per-repository table of all 38 repositories as reported in the paper
 - [docs/FAQ.md](docs/FAQ.md) — questions the numbers invite
 
 ---

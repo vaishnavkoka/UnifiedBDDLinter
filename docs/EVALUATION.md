@@ -53,7 +53,7 @@ One row per file, 16 columns:
 
 The text columns contain embedded newlines, which is valid CSV but means `wc -l`
 reports far more lines than records. Use a CSV reader, or
-[../tools/inspect_run.py](../tools/inspect_run.py).
+[../scripts/inspect_run.py](../scripts/inspect_run.py).
 
 ## Verifying that repairs preserve meaning
 

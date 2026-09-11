@@ -1,7 +1,7 @@
 # Rule reference
 
 Generated from `src/unifiedbddlinter/catalogue.py`. Do not edit by hand —
-regenerate with `python3 tools/generate_rule_docs.py`.
+regenerate with `python3 scripts/generate_rule_docs.py`.
 
 **28 rules.** 20 run in default mode; 8 are safely fixable.
 

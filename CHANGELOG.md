@@ -50,7 +50,7 @@ an existing `.unified-lintrc.json` keeps working.
   conventions, so the tool must choose one.
 - `.unified-lintrc.json` is load-bearing: rule severities, per-rule toggles,
   numeric thresholds, the filename convention and path exclusions all resolve
-  from it. `bddlint.py config` prints what actually applied.
+  from it. `tools/bddlint.py config` prints what actually applied.
 - Reports print the file path once as a heading rather than on every line, and
   each violation carries its rule name and severity.
 - SARIF output added alongside text and JSON.

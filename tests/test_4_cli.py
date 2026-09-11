@@ -21,7 +21,7 @@ from _support import FIXTURES, ROOT, add_src_to_path
 
 add_src_to_path()
 
-LAUNCHER = ROOT / "bddlint.py"
+LAUNCHER = ROOT / "tools" / "bddlint.py"
 
 
 def run(*args, cwd=None):

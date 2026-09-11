@@ -158,7 +158,7 @@ class Launcher(unittest.TestCase):
         """
         with tempfile.TemporaryDirectory() as elsewhere:
             proc = subprocess.run(
-                [sys.executable, str(ROOT / "bddlint.py"), "version"],
+                [sys.executable, str(ROOT / "tools" / "bddlint.py"), "version"],
                 cwd=elsewhere, capture_output=True, text=True)
             self.assertEqual(proc.returncode, 0, proc.stderr)
             self.assertIn("UnifiedBDDLinter", proc.stdout)

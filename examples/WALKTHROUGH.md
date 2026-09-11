@@ -14,7 +14,7 @@ the tool can repair, some it will only report.
 ## 1. What does the tool check?
 
 ```bash
-python3 bddlint.py rules
+python3 tools/bddlint.py rules
 ```
 
 28 rules. The `DEFAULT` column says what the fixer does; `CLASS` says why.
@@ -22,7 +22,7 @@ python3 bddlint.py rules
 ## 2. Lint the demo file
 
 ```bash
-python3 bddlint.py lint examples/demo.feature
+python3 tools/bddlint.py lint examples/demo.feature
 ```
 
 Each line is `path:line:column  severity  RULE  message`, which editors and
@@ -31,9 +31,9 @@ terminals recognise as a jump target.
 ## 3. Filter what you see
 
 ```bash
-python3 bddlint.py lint examples/demo.feature --severity error   # serious only
-python3 bddlint.py lint examples/demo.feature --summary          # counts only
-python3 bddlint.py lint examples/demo.feature --no-summary       # no counts
+python3 tools/bddlint.py lint examples/demo.feature --severity error   # serious only
+python3 tools/bddlint.py lint examples/demo.feature --summary          # counts only
+python3 tools/bddlint.py lint examples/demo.feature --no-summary       # no counts
 ```
 
 `--severity` means "this level **and above**", not "exactly this level".
@@ -44,8 +44,8 @@ json)`. That hint is real — see the next section.
 ## 4. Machine-readable output
 
 ```bash
-python3 bddlint.py lint examples/demo.feature --format json
-python3 bddlint.py lint examples/demo.feature --format sarif
+python3 tools/bddlint.py lint examples/demo.feature --format json
+python3 tools/bddlint.py lint examples/demo.feature --format sarif
 ```
 
 JSON is key-sorted, so two runs diff cleanly. SARIF is what GitHub, GitLab and
@@ -55,7 +55,7 @@ JSON carries **every** violation, with no truncation — this is how to get the
 full per-rule breakdown the text summary abbreviates:
 
 ```bash
-python3 bddlint.py lint examples/demo.feature --format json \
+python3 tools/bddlint.py lint examples/demo.feature --format json \
   | python3 -c "import json,sys,collections; \
       v=[x for f in json.load(sys.stdin)['files'] for x in f['violations']]; \
       [print(f'{r:<8}{n}') for r,n in collections.Counter(x['rule'] for x in v).most_common()]"
@@ -67,8 +67,8 @@ Report goes to **stdout**, diagnostics to **stderr** — so
 ## 5. The two rule sets
 
 ```bash
-python3 bddlint.py lint examples/demo.feature --summary                  # all 28
-python3 bddlint.py lint examples/demo.feature --default-rules --summary  # the 18
+python3 tools/bddlint.py lint examples/demo.feature --summary                  # all 28
+python3 tools/bddlint.py lint examples/demo.feature --default-rules --summary  # the 18
 ```
 
 The 18 are the ones `gherkin-lint` and `cuke_linter` can also be asked about,
@@ -77,14 +77,14 @@ so they are what the differential evaluation measures.
 ## 6. Preview a fix without writing anything
 
 ```bash
-python3 bddlint.py fix examples/demo.feature --dry-run
+python3 tools/bddlint.py fix examples/demo.feature --dry-run
 ```
 
 ## 7. Actually fix it
 
 ```bash
 rm -rf /tmp/demo-fixed        # start from an empty directory
-python3 bddlint.py fix examples/demo.feature --output-dir /tmp/demo-fixed
+python3 tools/bddlint.py fix examples/demo.feature --output-dir /tmp/demo-fixed
 diff examples/demo.feature /tmp/demo-fixed/*.feature
 ```
 
@@ -119,8 +119,8 @@ need the tool to decide what you meant.
 **That is the whole design.** Compare before and after:
 
 ```bash
-python3 bddlint.py lint examples/demo.feature --summary   # before
-python3 bddlint.py lint /tmp/demo-fixed --summary         # after
+python3 tools/bddlint.py lint examples/demo.feature --summary   # before
+python3 tools/bddlint.py lint /tmp/demo-fixed --summary         # after
 ```
 
 (Pass the *directory*, not `dir/*.feature` — the fixer may rename a file, and
@@ -147,9 +147,9 @@ correct outcome, not a shortfall.
 ## 8. Configuration
 
 ```bash
-python3 bddlint.py config                                    # what resolved, and from where
+python3 tools/bddlint.py config                                    # what resolved, and from where
 cp ../config/unified-lintrc.default.json .unified-lintrc.json
-python3 bddlint.py lint examples/demo.feature --summary      # now governed by that file
+python3 tools/bddlint.py lint examples/demo.feature --summary      # now governed by that file
 rm .unified-lintrc.json
 ```
 
@@ -160,10 +160,10 @@ governs every subdirectory. A malformed config warns and falls back to defaults
 ## 9. Exit codes — the CI contract
 
 ```bash
-python3 bddlint.py lint examples/well_formed.feature ; echo "exit $?"   # 0
-python3 bddlint.py lint examples/demo.feature        ; echo "exit $?"   # 1
-python3 bddlint.py lint no/such/file.feature         ; echo "exit $?"   # 2
-python3 bddlint.py fix examples/demo.feature         ; echo "exit $?"   # 2, refuses in place
+python3 tools/bddlint.py lint examples/well_formed.feature ; echo "exit $?"   # 0
+python3 tools/bddlint.py lint examples/demo.feature        ; echo "exit $?"   # 1
+python3 tools/bddlint.py lint no/such/file.feature         ; echo "exit $?"   # 2
+python3 tools/bddlint.py fix examples/demo.feature         ; echo "exit $?"   # 2, refuses in place
 ```
 
 | | |
@@ -177,7 +177,7 @@ python3 bddlint.py fix examples/demo.feature         ; echo "exit $?"   # 2, ref
 problems" from "the linter is broken".
 
 ```bash
-python3 bddlint.py lint examples/demo.feature --fail-on never ; echo "exit $?"   # 0
+python3 tools/bddlint.py lint examples/demo.feature --fail-on never ; echo "exit $?"   # 0
 ```
 
 Report-only mode, for adopting the linter gradually.
@@ -185,7 +185,7 @@ Report-only mode, for adopting the linter gradually.
 ## 10. Provenance
 
 ```bash
-python3 bddlint.py version
+python3 tools/bddlint.py version
 ```
 
 Prints the md5 of the v1.0 engine this was ported from — the same hash recorded

@@ -19,13 +19,14 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+TOOLS = ROOT / "tools"
 EXAMPLES = ROOT / "examples"
 
 
 def run(script, *args):
     """Invoke an entry point as a real process, the way a reader would."""
     proc = subprocess.run(
-        [sys.executable, str(ROOT / script), *args],
+        [sys.executable, str(TOOLS / script), *args],
         capture_output=True, text=True)
     return proc
 
@@ -34,7 +35,7 @@ class PaperEntryPoints(unittest.TestCase):
 
     def test_entry_point_scripts_exist(self):
         for script in ("linter.py", "cli.py", "auto_fix.py"):
-            self.assertTrue((ROOT / script).is_file(),
+            self.assertTrue((TOOLS / script).is_file(),
                             f"{script} is named in the paper but is missing")
 
     def test_linter_runs_all_four_families(self):

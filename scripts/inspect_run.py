@@ -5,16 +5,16 @@ that -- VS Code tries to tokenise the whole file and dies -- and neither will a
 spreadsheet. This reads it as a stream, so memory stays flat regardless of size.
 
     # what is in the run?
-    python3 misc/demo/inspect_run.py <run-dir> --summary
+    python3 scripts/inspect_run.py <run-dir> --summary
 
     # which repositories, and how did each do?
-    python3 misc/demo/inspect_run.py <run-dir> --repos
+    python3 scripts/inspect_run.py <run-dir> --repos
 
     # one file's violations, formatted the way the tool prints them
-    python3 misc/demo/inspect_run.py <run-dir> --file georeferencing
+    python3 scripts/inspect_run.py <run-dir> --file georeferencing
 
     # every file still failing a given rule after repair
-    python3 misc/demo/inspect_run.py <run-dir> --rule Q003 --after
+    python3 scripts/inspect_run.py <run-dir> --rule Q003 --after
 """
 
 import argparse

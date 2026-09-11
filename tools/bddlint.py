@@ -28,7 +28,7 @@ from pathlib import Path
 
 # resolve() follows symlinks, so a symlink placed on PATH still finds the real
 # package rather than looking for src/ beside the link.
-_SRC = Path(__file__).resolve().parent / "src"
+_SRC = Path(__file__).resolve().parent.parent / "src"
 if not (_SRC / "unifiedbddlinter" / "__init__.py").is_file():
     sys.exit(f"bddlint: package not found under {_SRC}\n"
              f"         This launcher must stay beside the src/ directory.")

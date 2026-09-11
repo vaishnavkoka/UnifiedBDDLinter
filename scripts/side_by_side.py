@@ -5,7 +5,7 @@ almost every change is whitespace, which a normal diff renders as two lines that
 look identical. Here trailing spaces and indentation are drawn explicitly, so a
 viewer can see what moved.
 
-    python3 misc/demo/side_by_side.py <original.feature> <repaired.feature>
+    python3 scripts/side_by_side.py <original.feature> <repaired.feature>
 
 It also answers the question the demo actually rests on -- did the repair change
 any words? -- by comparing the two files' non-whitespace tokens and reporting the
