@@ -7,7 +7,7 @@ Turns one run's `results.csv` into the paper's figures and tables.
 | `aggregate.py` | the shared arithmetic; run alone for a text summary | — |
 | `fig2_before_after.py` | violations before/after, per linter | **Figure 2** |
 | `fig3_efficacy_vs_size.py` | efficacy vs repository size | **Figure 3** |
-| `table1_repositories.py` | per-repository results (CSV + LaTeX) | **Table 1** |
+| `table1_repositories.py` | per-repository results, as CSV | **Table 1** |
 | `make_all.py` | all of the above, plus `SUMMARY.md` | — |
 
 ```bash

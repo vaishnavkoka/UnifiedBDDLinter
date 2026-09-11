@@ -1,12 +1,9 @@
 # What the language bar should say.
 #
-# GitHub's linguist counts every file it recognises, which puts TeX and Gherkin
+# GitHub's linguist counts every file it recognises, which puts Gherkin and Ruby
 # in the summary for a Python tool. The classifications below leave the bar
 # reflecting what the repository actually is, without hiding anything: every
-# file is still browsable, searchable and diffable.
-
-# A generated LaTeX table, for pasting into a paper. Not source.
-results/*.tex            linguist-documentation
+# file stays browsable, searchable and diffable.
 
 # Sample and fixture specifications. They are input to the tool, not its
 # implementation, and there are enough of them to skew the summary.
@@ -21,6 +18,7 @@ evaluation/*.rb          linguist-vendored
 results/*.csv            linguist-generated
 corpus/MANIFEST.csv      linguist-generated
 
-# Keep line endings sane for a tool that cares about them. .feature files are
-# the artefact under test, so git must not rewrite their endings.
+# Never rewrite line endings in the artefact this tool exists to check. A
+# fixture silently converted on checkout would produce failures that look like
+# defects in the tool.
 *.feature                -text

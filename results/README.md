@@ -9,7 +9,7 @@ too large for git and is archived on Zenodo: **[TBD]**
 | File | What it holds |
 |---|---|
 | `summary.csv` | corpus totals, per-linter before/after, per-file outcomes |
-| `table1_repositories.csv` / `.tex` | per-repository reduction for all 38 |
+| `table1_repositories.csv` | per-repository reduction for all 38 |
 | `per_rule_violations.csv` | how often each of the 28 rules fired, before and after |
 | `edit_classes.csv` | what kind of edit each repaired file actually received |
 | `semantic_verification.csv` | Gherkin-parser comparison of every before/after pair |

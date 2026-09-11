@@ -334,7 +334,7 @@ UnifiedBDDLinter/
 |-- results/
 |   |-- figures/            before and after, per-repository
 |   |-- summary.csv         corpus totals and per-file outcomes
-|   |-- table1_repositories.csv/.tex   per-repository reduction, all 38
+|   |-- table1_repositories.csv        per-repository reduction, all 38
 |   |-- per_rule_violations.csv        how often each rule fired
 |   |-- edit_classes.csv               what kind of edit each file received
 |   |-- semantic_verification.csv      the Gherkin-parser comparison

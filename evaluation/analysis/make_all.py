@@ -111,8 +111,8 @@ def main() -> int:
 
     produced = [fig2_before_after.draw(results, figures),
                 fig3_efficacy_vs_size.draw(results, figures, driver)]
-    csv_path, tex_path, summary = table1_repositories.build(results, tables, driver)
-    produced += [csv_path, tex_path]
+    csv_path, summary = table1_repositories.build(results, tables, driver)
+    produced += [csv_path]
 
     # Carry the run's provenance next to its outputs. A figure separated from
     # the record of what produced it is decoration, not evidence.

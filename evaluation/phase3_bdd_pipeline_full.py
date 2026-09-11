@@ -688,7 +688,7 @@ def main() -> int:
                     item = line.strip()
                     # Only the bare artefact paths. make_all also echoes its
                     # input as "results: <csv>", which was just printed above.
-                    if (item.endswith((".png", ".csv", ".tex"))
+                    if (item.endswith((".png", ".csv"))
                             and " " not in item and ":" not in item):
                         log(f"  {short(item)}")
                 log(f"analysis:     {short(analysis_dir)}")
