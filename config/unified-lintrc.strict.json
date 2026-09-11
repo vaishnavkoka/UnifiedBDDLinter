@@ -1,0 +1,26 @@
+{
+  "_comment": [
+    "Strict preset: everything on, tighter limits, style demoted to advisory.",
+    "Suited to a team adopting the linter on a new codebase, where semantic",
+    "rules should block and formatting should merely inform."
+  ],
+  "rules": {
+    "disabled": [],
+    "severity_overrides": {
+      "S001": "info",
+      "S002": "info",
+      "S003": "info",
+      "W003": "critical",
+      "W004": "critical",
+      "Q001": "error"
+    }
+  },
+  "limits": {
+    "max_feature_name": 60,
+    "max_scenario_name": 60,
+    "max_step_length": 80,
+    "max_steps_per_scenario": 7,
+    "min_steps_per_scenario": 3
+  },
+  "formatting": { "file_name_style": "snake_case" }
+}

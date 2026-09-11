@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# POSIX launcher: `./bddlint lint features/`
+# Resolves this script's own directory so it works through a PATH symlink,
+# then defers to bddlint.py. Uses `python3` and falls back to `python`, because
+# some distributions ship only one of the two names.
+here=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if command -v python3 >/dev/null 2>&1; then
+    exec python3 "$here/bddlint.py" "$@"
+elif command -v python >/dev/null 2>&1; then
+    exec python "$here/bddlint.py" "$@"
+else
+    echo "bddlint: no python interpreter found on PATH" >&2
+    exit 3
+fi

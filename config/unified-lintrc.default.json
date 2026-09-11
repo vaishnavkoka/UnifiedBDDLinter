@@ -1,0 +1,41 @@
+{
+  "_comment": [
+    "Default configuration for UnifiedBDDLinter, with every value at its",
+    "built-in default. Copy to your project root as '.unified-lintrc.json'",
+    "and edit. The linter walks upward from the target looking for that name,",
+    "so one file at a repository root governs every subdirectory.",
+    "",
+    "Every value below is what the engine uses when no config is present, so",
+    "copying this file unchanged does not alter behaviour. Keys are optional:",
+    "omit anything you are not changing. Unknown keys are ignored, and a",
+    "malformed file WARNS and falls back to defaults rather than stopping the",
+    "linter. Run 'bddlint config' to see what actually resolved.",
+    "",
+    "Note: JSON has no comment syntax, hence this array. It is ignored."
+  ],
+
+  "rules": {
+    "disabled": [],
+    "severity_overrides": {}
+  },
+
+  "limits": {
+    "max_feature_name": 80,
+    "max_scenario_name": 80,
+    "max_step_length": 100,
+    "max_steps_per_scenario": 10,
+    "min_steps_per_scenario": 3
+  },
+
+  "formatting": {
+    "file_name_style": "snake_case"
+  },
+
+  "ignore_patterns": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    "target/**",
+    "vendor/**"
+  ]
+}
