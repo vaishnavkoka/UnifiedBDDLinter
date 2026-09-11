@@ -16,7 +16,7 @@ checks under a single engine, and adds an auto-fixer that repairs what can be
 repaired mechanically while refusing to touch anything that would change what a
 test means.
 
-![Workflow](results/figures/workflow.svg)
+![Workflow](docs/bddlinter.drawio-size-changed.svg)
 
 ---
 
@@ -82,7 +82,7 @@ Rules land in "reported" for three different reasons:
 
 ## Example repair
 
-![Before and after](results/figures/before-after.png)
+![Before and after](docs/before-after-example.png)
 
 The fixer normalises indentation, spacing and blank lines, and derives the
 filename from the `Feature:` line. The scenario content is untouched — not
