@@ -8,17 +8,6 @@
 
 Gherkin specifications are both human-readable requirements and executable tests, but their quality is usually policed by a handful of separate, partly contradictory linters that only report problems. UnifiedBDDLinter brings style, structure, workflow, and business-readability checks together into a single engine. It also provides an auto-fixer that automatically resolves issues that can be safely corrected mechanically, while leaving anything that could change the meaning or behavior of a test for a human to review.
 
-# UnifiedBDDLinter: A Tool to Detect and Remediate Quality Anti-Patterns in Gherkin Feature Files
-
-Gherkin specifications are both human-readable requirements and executable
-tests, but their quality is usually policed by a handful of separate, partly
-contradictory linters that only report problems and never fix them.
-UnifiedBDDLinter brings style, structure, workflow, and business-readability
-checks under a single engine, and adds an auto-fixer that repairs the mechanical
-issues it finds while leaving anything that would change a test's meaning to a
-human.
-
-
 ![Workflow](docs/bddlinter.drawio-size-changed.svg)
 
 ## Table of Contents
