@@ -18,6 +18,27 @@ test means.
 
 ![Workflow](docs/bddlinter.drawio-size-changed.svg)
 
+## Table of Contents
+
+- [Quick start](#quick-start)
+- [What it checks](#what-it-checks)
+- [The safe-fix boundary](#the-safe-fix-boundary)
+- [Example repair](#example-repair)
+- [Usage](#usage)
+  - [Lint](#lint)
+  - [Fix](#fix)
+  - [Configure](#configure)
+- [Results](#results)
+- [The two incumbent linters are mutually unsatisfiable](#the-two-incumbent-linters-are-mutually-unsatisfiable)
+- [Reproducing the evaluation](#reproducing-the-evaluation)
+- [A note on the results](#a-note-on-the-results)
+- [Limitations](#limitations)
+- [Data availability](#data-availability)
+- [Repository layout](#repository-layout)
+- [Documentation](#documentation)
+- [Citation](#citation)
+- [License](#license)
+
 ---
 
 ## Quick start
@@ -218,29 +239,35 @@ A results file for the full corpus is around 700 MB, which no editor will open.
 
 ## Limitations
 
-**English keywords only.** The linter is a line-based scan that recognises only
-English Gherkin keywords. On this corpus 380 files (1.9%) declare a non-English
-language header, predominantly Dutch, and are reported as lacking a feature
-declaration although the official parser reads them correctly. The affected rule
-is detect-only, so these files are never modified, but their violation counts are
-overstated.
+**English keywords only.** The linter is a line-based scan and recognises only
+English Gherkin keywords. A file using a `# language:` header — `Functionaliteit:`
+rather than `Feature:` — is reported as lacking a feature declaration. The rule
+affected is detect-only, so such files are never modified. Replacing the scan
+with the official Gherkin AST is the first item of planned work.
 
-**Files that never parse.** 778 files cannot be parsed before or after repair,
-and are excluded from the semantic verification rather than counted as verified.
-232 of them come from a single repository whose files share the `.feature`
-extension while containing protein contact-map data. We retain it, since
-excluding an input after observing its result would bias the evaluation.
+**Heuristic readability checks.** The business-readability rules are keyword and
+shape matches rather than linguistic analysis, which keeps the tool
+dependency-free and bounds the subtlety of what they detect. Each rule's
+mechanism is written out in [docs/RULES.md](docs/RULES.md).
 
-**Heuristic quality checks.** The business-readability rules are keyword and
-shape heuristics rather than linguistic analysis. That choice keeps the tool
-dependency-free and bounds the subtlety of what they can detect. Each rule's
-actual mechanism is documented in [docs/RULES.md](docs/RULES.md).
+A fuller account, including how files that the parser cannot read are handled,
+is in [docs/EVALUATION.md](docs/EVALUATION.md).
 
-**Corpus currency.** These results come from repositories cloned on
-**19 May 2026**. Public repositories change, so re-running against today's
-versions will not reproduce these figures exactly. The SHA-256 manifest in
-[corpus/MANIFEST.csv](corpus/MANIFEST.csv) identifies precisely which file
-contents were measured.
+---
+
+## A note on the results
+
+The figures above come from one corpus of 38 repositories, cloned on
+**19 May 2026**. How much the fixer removes depends on the starting quality of
+the `.feature` files, which varies a great deal between projects, so a different
+repository or corpus will give different figures. They characterise the tool on
+real-world specifications rather than promise a fixed percentage on any given
+project.
+
+Public repositories also keep changing. Re-running against today's versions of
+these same projects will not reproduce these numbers exactly.
+[corpus/MANIFEST.csv](corpus/MANIFEST.csv) records a fingerprint for every file
+measured, so the exact contents behind these numbers stay identifiable.
 
 ---
 
@@ -263,20 +290,60 @@ of the per-file rows, and the corpus manifest. Column meanings are documented in
 
 ```
 UnifiedBDDLinter/
-├── linter.py              full four-family linter (28 rules)
-├── cli.py                 style/structure/workflow subset
-├── auto_fix.py            form-preserving auto-fixer
-├── bddlint.py             unified CLI (lint / fix / rules / config)
-├── src/unifiedbddlinter/  parser, rule engine, fixer, catalogue, config
-├── tests/                 78 tests, no dependencies
-├── examples/              sample .feature files and a walkthrough
-├── config/                .unified-lintrc.json templates
-├── evaluation/            differential harness, analysis, semantic verification
-├── demo/                  demo script and inspection tools
-├── results/               figures, tables and summary measurements
-├── corpus/                SHA-256 manifest and materialiser
-└── docs/                  rule reference, design, evaluation, FAQ
+|-- linter.py               full four-family linter, all 28 rules
+|-- cli.py                  style/structure/workflow subset, with family toggles
+|-- auto_fix.py             form-preserving auto-fixer
+|-- bddlint.py              one command with subcommands: lint, fix, rules, config
+|-- bddlint, bddlint.cmd    launchers for POSIX shells and Windows
+|-- src/
+|   `-- unifiedbddlinter/
+|       |-- engine.py       the parser and all 28 rule implementations
+|       |-- fixer.py        the eight repairs, and the boundary they respect
+|       |-- catalogue.py    rule identifiers, severities, families, fixability
+|       |-- config.py       .unified-lintrc.json discovery and resolution
+|       |-- reporting.py    text, JSON and SARIF output
+|       |-- cli.py          argument parsing for every entry point
+|       `-- _compat.py      shared plumbing for the three entry points above
+|-- tests/                  78 tests and their fixtures, no dependencies
+|-- examples/               sample .feature files and a walkthrough
+|-- config/                 .unified-lintrc.json templates, default and strict
+|-- tools/
+|   `-- generate_rule_docs.py   regenerates docs/RULES.md from the catalogue
+|-- evaluation/
+|   |-- phase3_bdd_pipeline_full.py   differential lint-fix-lint harness
+|   |-- verify_semantics.py           re-parses repairs and compares models
+|   |-- gherkin_model_dump.rb         reads a .feature with the Gherkin parser
+|   |-- oracles.py                    runs gherkin-lint and cuke_linter
+|   |-- check_environment.py          reports what is installed
+|   |-- analysis/                     figure and table generators
+|   |-- config/                       .gherkin-lintrc and .cukelinter
+|   `-- requirements.txt              tqdm and matplotlib, harness only
+|-- demo/
+|   |-- DEMO.md             the demonstration script, command by command
+|   |-- side_by_side.py     renders a repair and checks no word changed
+|   `-- inspect_run.py      browses a results file too large for an editor
+|-- results/
+|   |-- figures/            workflow, before and after, per-repository
+|   |-- summary.csv         corpus totals and per-file outcomes
+|   |-- table1_repositories.csv/.tex   per-repository reduction, all 38
+|   |-- per_rule_violations.csv        how often each rule fired
+|   |-- edit_classes.csv               what kind of edit each file received
+|   |-- semantic_verification.csv      the Gherkin-parser comparison
+|   |-- sample_results.csv             excerpt showing the column layout
+|   `-- README.md           column dictionary and how to read each file
+|-- corpus/
+|   |-- MANIFEST.csv        every file measured, with its fingerprint
+|   `-- materialise.py      builds a working copy from the manifest
+`-- docs/
+    |-- RULES.md            all 28 rules, and how each quality rule decides
+    |-- DESIGN.md           architecture and the safe-fix boundary
+    |-- EVALUATION.md       corpus, method, per-repository results
+    `-- FAQ.md              questions the numbers invite
 ```
+
+Everything at the top level is something you run. The implementation lives in
+`src/unifiedbddlinter/`, and the entry points are thin translators over it, so
+`linter.py` and `bddlint.py lint` do the same work through different front doors.
 
 ---
 

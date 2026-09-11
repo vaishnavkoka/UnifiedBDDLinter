@@ -17,8 +17,15 @@ that bar and are repaired; the rest are reported for a human to resolve.
 
 import argparse
 import sys
+from pathlib import Path
 
-from _compat import FIX_CLASSES, _cli
+# Put this checkout's src/ on the path before importing the package. Nothing can
+# come from unifiedbddlinter until this has run, so it cannot live in a module.
+_SRC = Path(__file__).resolve().parent / "src"
+if _SRC.is_dir() and str(_SRC) not in sys.path:
+    sys.path.insert(0, str(_SRC))
+
+from unifiedbddlinter._compat import FIX_CLASSES, _cli
 
 
 def main(argv=None) -> int:

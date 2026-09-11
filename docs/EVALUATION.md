@@ -13,8 +13,9 @@ Repositories declaring ten or more `.feature` files were cloned in full.
 **38 repositories, 20,270 `.feature` files**, cloned **19 May 2026**.
 
 [../corpus/MANIFEST.csv](../corpus/MANIFEST.csv) records the path, source,
-repository, size and SHA-256 of every file, so the exact contents measured can be
-identified even though public repositories keep changing.
+repository, size and a content fingerprint for every file, so the exact
+contents measured can be identified even though public repositories keep
+changing.
 
 The mining selected on file **extension**, not content. One consequence is
 visible in the results and discussed under [Limitations](#limitations).

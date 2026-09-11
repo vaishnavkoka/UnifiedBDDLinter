@@ -15,15 +15,8 @@ paper documents, maps them onto the package's own options, and delegates.
 
 import argparse
 import sys
-from pathlib import Path
 
-# Both layouts must work: running these scripts straight out of the unpacked
-# artifact (sources under src/) and running them after a pip install.
-_SRC = Path(__file__).resolve().parent / "src"
-if _SRC.is_dir() and str(_SRC) not in sys.path:
-    sys.path.insert(0, str(_SRC))
-
-from unifiedbddlinter import cli as _cli  # noqa: E402
+from unifiedbddlinter import cli as _cli
 
 # Rule families, as the paper names them. `quality` is the business-readability
 # family that linter.py runs and cli.py does not.
