@@ -1,0 +1,7 @@
+metric,value
+files_compared,20270
+files_verified,19492
+semantically_identical,19491
+identical_pct,99.99
+unparseable_both_sides,778
+differing_parse-regression,1

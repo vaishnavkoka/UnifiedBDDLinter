@@ -1,0 +1,3 @@
+file,difference_kind,detail
+View or edit CV Client company information.feature,parse-regression,"ArgumentError: Error encountered while parsing 'artifacts/runs/full-2026-09-09/fixed/github-search-tool/bcgov-onRouteBCSpecification/Manage Profiles/viewedit_cv_client_company_information_details.feature'
+RuntimeError - (148:3): expected: #EOF, #TableRow, #TagLine, #ExamplesLine, #ScenarioLine, #RuleLine, #Comment, #Empty, got 'Given a user is at their ""Company Information""'"

@@ -1,0 +1,32 @@
+# Provenance for this run. Written automatically; do not edit.
+# A provenance file that is quietly corrected after the fact is not provenance.
+
+[run]
+completed        = 2026-09-09T17:07:21
+corpus           = /home/vaishnavkoka/RE4BDD/UnifiedBDDLinter-Artifact/work/corpus
+files_discovered = 20270
+files_processed  = 20270
+fix_failures     = 0
+workers          = 24
+rule_set         = default (18 oracle-checkable rules)
+fixer_mode       = form-only (8 rules, no invented text)
+oracles_used     = True
+elapsed_seconds  = 1931.4
+
+[tool]
+engine.py        = md5 ccc9ccd8508968457581ec64087093e1
+fixer.py         = md5 2174870ee640208d776e7b550698132d
+config.py        = md5 058f014cbba07c8f30196e1dde49f79d
+catalogue.py     = md5 07697a8a069b25d0a740d90c8d1b4f7e
+cli.py           = md5 7557bb925e721b6686fa33842700fb1e
+
+[oracles]
+gherkin-lint     = 4.2.4   (/home/vaishnavkoka/.nvm/versions/node/v18.20.8/bin/gherkin-lint)
+cuke_linter      = 1.4.0   (/usr/local/bin/cuke_linter)
+cuke_modeler     = 3.28.0   (n/a)
+gherkin-lintrc   = md5 c256e0551768d8860a5fe41b7738b517
+cukelinter       = md5 67eb07d07cec357615bb2a9ffe9941e4
+
+[runtime]
+python           = 3.10.12
+platform         = Linux-5.15.0-136-generic-x86_64-with-glibc2.35
