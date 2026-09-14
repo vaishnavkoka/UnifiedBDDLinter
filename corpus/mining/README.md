@@ -23,24 +23,27 @@ Only `github-global-search` loses candidates at the refinement step, because it
 was the only source whose results had not already been filtered by the search
 tool itself.
 
-## From 42 cloned to 38 measured
+## From 42 clone directories to 38 repositories
 
 ```
-42 cloned
- −1  contained no .feature files once cloned
- −3  found by two sources each
-────
-38 unique repositories, 20,270 .feature files
+42  clone directories created
+-3  three repositories were found by two sources each, so were cloned twice
+----
+39  distinct repositories
+-1  one contained no .feature files despite its metadata declaring them
+----
+38  repositories, 20,270 .feature files
 ```
 
-The repository with no feature files is
-`BVCOG-Contract-Management/BVGOG-Contract-Manager`; it declared them in its
-metadata but none were present. The three found twice are `cchitsiang/bdd`,
+The three cloned twice are `cchitsiang/bdd`,
 `local-web-services/local-web-services` and
-`reqnroll/Reqnroll.ExploratoryTestProjects`.
+`reqnroll/Reqnroll.ExploratoryTestProjects`. The one with no feature files is
+`BVCOG-Contract-Management/BVGOG-Contract-Manager`; the count gate ran on
+metadata before cloning, and for that repository the metadata was wrong.
 
 The `source` column in `../MANIFEST.csv` records which search found a
-repository. It describes the search, not the project.
+repository. It describes the search, not the project, which is why three
+repositories appear under two sources.
 
 ## Stages
 
