@@ -1,0 +1,65 @@
+{
+  "cloner": {
+    "input_files": [
+      "/home/vaishnavkoka/RE4BDD/Phase-workout-for-bdd/phase-3 (refinement)/phase-3-output-files/github-global-search-output-phase-2-output-refiner_phase-3-feature-count-output.csv",
+      "/home/vaishnavkoka/RE4BDD/Phase-workout-for-bdd/phase-3 (refinement)/phase-3-output-files/github-search-tool-output-phase-2-output-refiner_phase-3-feature-count-output.csv",
+      "/home/vaishnavkoka/RE4BDD/Phase-workout-for-bdd/phase-3 (refinement)/phase-3-output-files/seart-tool-output-phase-2-output-refiner_phase-3-feature-count-output.csv"
+    ],
+    "github-global-search-output-phase-2-output-refiner_phase-3-feature-count-output.csv": {
+      "last_index": 14,
+      "last_repo": "",
+      "updated_at": "2026-05-19T17:45:32Z"
+    },
+    "done_repos": {
+      "BVCOG-Contract-Management/BVGOG-Contract-Manager": "success",
+      "cchitsiang/bdd": "success",
+      "csu0077/project3_testing": "success",
+      "esg4aspl/SPL-ESG-Examples": "success",
+      "inventorypapa/free-dropshipping-automation-software": "success",
+      "kabisa/books": "success",
+      "learningequality/kolibri": "success",
+      "local-web-services/local-web-services": "success",
+      "maurafitz/coop-workshift-app": "success",
+      "Novus-Engine/novuspack": "success",
+      "projectestac/alexandria": "success",
+      "reqnroll/Reqnroll.ExploratoryTestProjects": "success",
+      "Rotbarsch/NatLaRestTest": "success",
+      "Sylius/Sylius": "success",
+      "trydirect/sylius": "success",
+      "actiontech/dble-test-suite": "success",
+      "ashwanth1109/gherkin-feature-parser": "success",
+      "bcgov/onRouteBCSpecification": "success",
+      "bdewey/git-stack": "success",
+      "BRP-API/Haal-Centraal-BRP-bevragen": "success",
+      "Corvusoft/restq": "success",
+      "CriminalInjuriesCompensationAuthority/q-templates-application": "success",
+      "git-town/git-town": "success",
+      "HarrisClover/RequireCEG": "success",
+      "hmcts/ia-ccd-e2e-tests": "success",
+      "inukshuk/citeproc": "success",
+      "keygen-sh/keygen-api": "success",
+      "opencypher/openCypher": "success",
+      "openshift/verification-tests": "success",
+      "rpm-software-management/ci-dnf-stack": "success",
+      "Sahamati/certification-framework": "success",
+      "saqibrizvi11/SH2_contactMaps": "success",
+      "skgopinath/featuretagselector": "success",
+      "SoftEng-UniGE/BEWT-Specifications": "success",
+      "SU-SWS/linky_clicky": "success",
+      "vanderbilt-redcap/redcap_rsvc": "success",
+      "buildingSMART/ifc-gherkin-rules": "success",
+      "iriusrisk/bdd-security": "success",
+      "pherkin/test-bdd-cucumber-perl": "success"
+    },
+    "github-search-tool-output-phase-2-output-refiner_phase-3-feature-count-output.csv": {
+      "last_index": 50,
+      "last_repo": "",
+      "updated_at": "2026-05-19T17:48:04Z"
+    },
+    "seart-tool-output-phase-2-output-refiner_phase-3-feature-count-output.csv": {
+      "last_index": 32,
+      "last_repo": "",
+      "updated_at": "2026-05-19T17:48:47Z"
+    }
+  }
+}
