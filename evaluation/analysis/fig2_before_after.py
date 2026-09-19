@@ -41,9 +41,9 @@ def draw(results_csv: Path, outdir: Path) -> Path:
     style.apply()
 
     labels = [label for label, _b, _a in LINTERS]
-    # "BDD-lint" is what the reference figures call our own linter. Kept so the
-    # two are directly comparable side by side.
-    display = ["gherkin-lint", "cuke_linter", "BDD-lint"]
+    # The bars carry the tool's published name. Earlier figures said "BDD-lint",
+    # which no longer matches the tool, the paper, or the repository.
+    display = ["gherkin-lint", "cuke_linter", "UnifiedBDDLinter"]
     before = [totals[l]["before"] for l in labels]
     after = [totals[l]["after"] for l in labels]
 
