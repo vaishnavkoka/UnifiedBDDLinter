@@ -71,3 +71,14 @@ an existing `.unified-lintrc.json` keeps working.
   comparing models, rather than by trusting a drop in reported violations.
 - Files the parser cannot process are excluded from that verification and
   reported separately, rather than counted as verified.
+
+## 1.1
+
+- The before/after figure names the tool `UnifiedBDDLinter` rather than the
+  prototype name `BDD-lint`.
+- The dry run no longer announces a rename to the name a file already has.
+  Only the preview was affected, and a full re-run over all 20,270 files
+  confirms identical results.
+- The corpus mining pipeline is published under `corpus/mining/`.
+- Workflow diagrams added to `docs/`.
+
