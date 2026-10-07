@@ -588,12 +588,11 @@ class AutoFixer:
         desired_full_name = f"{desired_file_name}.feature"
         new_file_path = current_file_path.parent / desired_full_name
         
-        # Check if rename is needed (normalize both for comparison - support both snake_case and kebab-case)
-        current_normalized = current_file_name.lower().replace('_', '-').replace('-', '-')
-        desired_normalized = desired_file_name.lower()
-        
-        if current_normalized == desired_normalized:
-            # File name already matches feature name (after normalization)
+        # Compare the names as they are. Normalising the separator away would
+        # make well_formed and well-formed look identical, and then
+        # file_name_style could never convert one convention to the other --
+        # which is the whole purpose of the setting.
+        if current_file_name.lower() == desired_file_name.lower():
             return file_path
         
         # Check for existing file with same name (collision)
