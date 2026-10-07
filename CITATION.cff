@@ -6,7 +6,7 @@ abstract: >-
   .feature files, implementing 28 rules across Style, Structure, Workflow
   and Quality families. Repairs only defects recoverable from the file
   itself, so a specification is never rewritten to silence a rule.
-version: "1.0"
+version: "1.1"
 license: MIT
 repository-code: "https://github.com/vaishnavkoka/UnifiedBDDLinter"
 type: software

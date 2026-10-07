@@ -21,7 +21,7 @@ The package is standard library only.  ``pyspellchecker`` enables rule SY001
 and nothing else; its absence is reported, never silently ignored.
 """
 
-__version__ = "1.0"
+__version__ = "1.1"
 
 # The version of the original tool this package was ported from, and the md5 of
 # the engine file that produced the published results.  Recorded in code rather
