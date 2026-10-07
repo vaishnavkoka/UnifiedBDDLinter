@@ -7,7 +7,7 @@
 [![Release](https://img.shields.io/github/v/release/vaishnavkoka/UnifiedBDDLinter?color=1b9e77&label=release)](https://github.com/vaishnavkoka/UnifiedBDDLinter/releases/latest)
 [![Tests](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml/badge.svg)](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.8%20%7C%203.11%20%7C%203.13-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/python-3.8+.svg)](https://www.python.org/)
 
 [![Gherkin](https://img.shields.io/badge/Gherkin-Cucumber-23D96C.svg)](https://cucumber.io/docs/gherkin/)
 [![Rules](https://img.shields.io/badge/rules-28-5e81ac.svg)](docs/RULES.md)
