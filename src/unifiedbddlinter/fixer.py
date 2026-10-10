@@ -477,7 +477,10 @@ class AutoFixer:
         renamed_files = 0
         for feature_file in feature_files:
             new_file_path = self.fix_file(str(feature_file), dry_run, output_dir)
-            if str(feature_file) != new_file_path:
+            # Compare the NAMES, not the paths. With an output directory the
+            # path always differs, so comparing paths counted every file as
+            # renamed even when its name was untouched.
+            if Path(feature_file).name != Path(new_file_path).name:
                 renamed_files += 1
         
         self._say(f"\n{'='*80}")
