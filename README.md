@@ -251,7 +251,10 @@ and tables itself.
 `-w, --workers` sets how many files are processed in parallel, and defaults to
 the number of CPU cores available on the machine. `--no-oracles` measures our
 tool alone, requiring neither Node nor Ruby, and `--resume` continues a run that
-was interrupted.
+was interrupted. Size it to spare capacity rather than core count: each worker spawns a Node and
+a Ruby process alongside it, so a machine already under load can stall if the
+default is used.
+
 
 A results file for the full corpus is around 700 MB, which no editor will open.
 [scripts/inspect_run.py](scripts/inspect_run.py) browses one without loading it.
