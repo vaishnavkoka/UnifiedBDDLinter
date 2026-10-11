@@ -173,7 +173,7 @@ A full-corpus run takes roughly 35 minutes on 24 cores and produces about 900 MB
 
 ## Limitations
 
-**Localised Gherkin.** 380 files (1.9%) declare a non-English `# language:`
+**Localised Gherkin.** 381 files (1.9%) declare a non-English `# language:`
 header, predominantly Dutch. The line-based scan reports them as lacking a
 feature declaration, although the official parser reads them correctly. The
 affected rule is detect-only, so these files are never modified, but their
