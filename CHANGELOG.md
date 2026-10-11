@@ -81,4 +81,7 @@ an existing `.unified-lintrc.json` keeps working.
   confirms identical results.
 - The corpus mining pipeline is published under `corpus/mining/`.
 - Workflow diagrams added to `docs/`.
+- The repair summary counts renames by filename rather than by path. With an
+  output directory, every file lands on a new path, so the old comparison
+  reported all of them as renamed. Only the summary line was wrong.
 
