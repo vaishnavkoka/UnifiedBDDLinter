@@ -171,6 +171,12 @@ needs neither Node nor Ruby. `--resume` continues an interrupted run.
 
 A full-corpus run takes roughly 35 minutes on 24 cores and produces about 900 MB.
 
+Re-running reproduces every aggregate exactly, but not `results.csv`
+byte-for-byte. Where several files in a directory declare the same `Feature:`
+name, which one receives the undecorated filename depends on worker scheduling.
+Around 0.1% of rows swap within such groups, and the swaps cancel in every
+total. The repaired file contents are unaffected.
+
 ## Limitations
 
 **Localised Gherkin.** 381 files (1.9%) declare a non-English `# language:`
