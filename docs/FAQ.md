@@ -112,10 +112,10 @@ comparative evaluation, where they serve as independent oracles. Pass
 
 ## Why do the rule identifiers have gaps?
 
-`ST005`, `T002`–`T005`, `Q007` and `SY001` were rules that we removed after
-measuring them. Each fired on five or fewer files across the entire corpus, and
-`SY001` additionally cost about 95% of total runtime and was the package's only
-third-party dependency.
+`ST005`, `T002`–`T005` and `Q007` each fired on five or fewer files across the
+entire corpus. `SY001` fired on none at all, while costing about 95% of total
+runtime and being the package's only third-party dependency. All were removed
+after measuring them.
 
 Identifiers are not renumbered, so an existing `.unified-lintrc.json` keeps
 working. [../CHANGELOG.md](../CHANGELOG.md) records what went and why.
