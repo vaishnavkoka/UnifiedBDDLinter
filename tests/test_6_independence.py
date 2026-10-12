@@ -3,7 +3,7 @@ test_6_independence.py -- the tool depends on nothing but Python.
 
 WHY THIS IS A TEST
 ------------------
-The paper claims UnifiedBDDLinter replaces a fragmented ecosystem with one
+The UnifiedBDDLinter replaces a fragmented ecosystem with one
 self-contained engine, and the artifact is shipped so a reviewer can run it
 without installing Node or Ruby. That claim is easy to state and easy to break:
 one convenient `subprocess.run(["gherkin-lint", ...])` added later, to
