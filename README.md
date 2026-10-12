@@ -2,7 +2,7 @@
 
 **A linter and form-preserving auto-fixer for Gherkin `.feature` files.**
 
-[![DOI](https://img.shields.io/badge/DOI-pending-lightgrey.svg)](#data-availability)
+[![Zenodo](https://img.shields.io/badge/DOI-pending-lightgrey.svg)](https://zenodo.org/uploads/22715478)
 [![Demo](https://img.shields.io/badge/demo-pending-lightgrey.svg)](#data-availability)
 [![Release](https://img.shields.io/github/v/release/vaishnavkoka/UnifiedBDDLinter?color=1b9e77&label=release)](https://github.com/vaishnavkoka/UnifiedBDDLinter/releases/latest)
 [![Tests](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml/badge.svg)](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml)
