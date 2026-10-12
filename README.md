@@ -62,8 +62,8 @@ introduced.
 
 ## What it checks
 
-28 rules across four families. **8 are repaired automatically, 20 are reported
-for a human to resolve.**
+28 rules across four families. 8 are repaired automatically, 20 are reported
+for a human to resolve.
 
 | Family | Rules | Repaired | Checks |
 |---|--:|--:|---|
