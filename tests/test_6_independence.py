@@ -35,7 +35,6 @@ FORBIDDEN_IMPORTS = {
     "http", "ftplib", "telnetlib", "smtplib", "asyncio", "ctypes", "shutil",
 }
 
-# The single optional third-party dependency, and the only one permitted.
 # Nothing. SY001 was removed, and with it the package's last
 # third-party import. Any name appearing here again is a regression.
 ALLOWED_THIRD_PARTY = set()
