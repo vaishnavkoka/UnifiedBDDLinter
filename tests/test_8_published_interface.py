@@ -1,15 +1,16 @@
-"""The three entry points the paper documents must keep working.
+"""The published entry points must keep working.
 
-The four commands a reader will type verbatim:
+Four commands -- three standalone scripts and the evaluation harness:
 
-    python3 linter.py features/
-    python3 cli.py features/ --format json
-    python3 auto_fix.py features/ -o fixed/
-    python3 phase3_bdd_pipeline_full.py -r repos/ -o out.csv
+    python3 tools/linter.py examples/
+    python3 tools/cli.py examples/ --format json
+    python3 tools/auto_fix.py examples/ -o fixed/
+    python3 evaluation/phase3_bdd_pipeline_full.py --corpus <dir> --output runs/
 
-These are not aliases for convenience; they are the published interface. A
-rename inside the package must not silently break them, so each one is exercised
-here -- flags included, exactly as Table 2 spells them.
+These are not aliases for convenience; they are the documented interface. A
+rename inside the package must not silently break them, so the three scripts
+are exercised here with their flags, and the harness is checked for the options
+it documents.
 """
 
 import json
@@ -31,12 +32,12 @@ def run(script, *args):
     return proc
 
 
-class PaperEntryPoints(unittest.TestCase):
+class PublishedEntryPoints(unittest.TestCase):
 
     def test_entry_point_scripts_exist(self):
         for script in ("linter.py", "cli.py", "auto_fix.py"):
             self.assertTrue((TOOLS / script).is_file(),
-                            f"{script} is named in the paper but is missing")
+                            f"{script} is a documented entry point but is missing")
 
     def test_linter_runs_all_four_families(self):
         proc = run("linter.py", str(EXAMPLES), "--format", "json")
@@ -89,7 +90,7 @@ class PaperEntryPoints(unittest.TestCase):
             self.assertIn(proc.returncode, (0, 1), proc.stderr)
             self.assertFalse(out.exists(), "--dry-run created an output directory")
 
-    def test_harness_accepts_the_flags_the_paper_prints(self):
+    def test_harness_accepts_the_documented_flags(self):
         harness = ROOT / "evaluation" / "phase3_bdd_pipeline_full.py"
         if not harness.is_file():
             self.skipTest("validation harness not present (tool ships standalone)")

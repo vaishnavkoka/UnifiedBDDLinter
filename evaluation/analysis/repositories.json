@@ -1,6 +1,6 @@
 {
   "_comment": [
-    "Directory name -> GitHub owner/repo, for Table 1.",
+    "Directory name -> GitHub owner/repo, for the per-repository table.",
     "",
     "The corpus stores each repository under a flattened 'owner-repo' directory",
     "name, and that flattening is not reversible: both owners and repository",

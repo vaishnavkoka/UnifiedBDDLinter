@@ -42,7 +42,7 @@ def draw(results_csv: Path, outdir: Path) -> Path:
 
     labels = [label for label, _b, _a in LINTERS]
     # The bars carry the tool's published name. Earlier figures said "BDD-lint",
-    # which no longer matches the tool, the paper, or the repository.
+    # which no longer matches the tool or the repository.
     display = ["gherkin-lint", "cuke_linter", "UnifiedBDDLinter"]
     before = [totals[l]["before"] for l in labels]
     after = [totals[l]["after"] for l in labels]
@@ -98,7 +98,7 @@ def draw(results_csv: Path, outdir: Path) -> Path:
     #
     # It carries NOTHING ELSE. A line reading "each linter reports
     # independently; totals are never pooled" used to sit below it and was
-    # removed: the paper's caption already says what the figure shows, and two
+    # removed: the caption already says what the figure shows, and two
     # texts saying the same thing leave a reader reconciling them -- with the
     # one baked into the image being the one they cannot edit.
     footer = (f"{len(rows):,} files  ·  {outcomes['improved_pct']:.1f}% improved  ·  "

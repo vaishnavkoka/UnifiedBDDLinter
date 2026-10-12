@@ -7,9 +7,9 @@ The fixer has two modes, and this module pins the contract of BOTH.
 
   DEFAULT (`safe=False`, `bddlint fix`) reproduces the published v1.0
   behaviour: eleven auto-fixable rules, five of which author text the tool
-  cannot derive from the input. This is the mode the tool demonstration paper
-  measured, so it must keep injecting exactly what it injected -- if it
-  stopped, the artifact would no longer reproduce its own paper.
+  cannot derive from the input. This is the mode the published
+  measurements used, so it must keep injecting exactly what it injected -- if
+  it stopped, the artifact would no longer reproduce its own results.
 
   SAFE (`safe=True`, `bddlint fix --safe-fix`) restricts repair to changes
   recoverable from the file itself. Here the fixer must never add a word, a
@@ -17,7 +17,7 @@ The fixer has two modes, and this module pins the contract of BOTH.
   a real project, and the guarantee it offers is the reason it exists.
 
 Both directions are asserted. A test suite that only checked safe mode would
-let the default silently stop reproducing the paper; one that only checked the
+let the default silently stop reproducing those results; one that only checked
 default would let the safe boundary silently leak.
 
 The tests are written as PROPERTIES over the file's content rather than as

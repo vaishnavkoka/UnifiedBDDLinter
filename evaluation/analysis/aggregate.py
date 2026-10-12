@@ -95,7 +95,7 @@ def corpus_totals(rows):
 
 
 def per_repository(rows):
-    """Per-repository aggregates, for Table 1 and the size/efficacy figure."""
+    """Per-repository aggregates, for the per-repository table and the size/efficacy figure."""
     repos = {}
     for row in rows:
         entry = repos.setdefault(row["repository"], {

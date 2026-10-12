@@ -120,7 +120,7 @@ class FixerSafety(unittest.TestCase):
 
 
 class FixModes(unittest.TestCase):
-    """The CLI default is the paper's configuration; --safe-fix opts out."""
+    """The CLI default is the published configuration; --safe-fix opts out."""
 
     def _fix_into(self, tmp, *extra):
         target = Path(tmp) / "semantic.feature"

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Oracle-corroborated subset -- entry point 2 of 3 (paper, Section 5.C.1).
+"""Oracle-corroborated subset -- entry point 2 of 3.
 
 Runs the style/structure/workflow subset that gherkin-lint and cuke_linter also
 check, with severity filtering, family toggles and JSON output. This is the rule

@@ -1,16 +1,16 @@
-"""Shared plumbing for the three entry points named in the paper.
+"""Shared plumbing for the three standalone entry points.
 
-The paper (Table 2, Section 5.C) documents UnifiedBDDLinter as three separate
-scripts -- ``linter.py``, ``cli.py`` and ``auto_fix.py`` -- because that is how
-v1.0 was laid out. The ported package exposes one ``bddlint`` command with
-subcommands instead, which is the better shape for a tool people install.
+UnifiedBDDLinter v1.0 was laid out as three separate scripts -- ``linter.py``,
+``cli.py`` and ``auto_fix.py``. The ported package exposes one ``bddlint``
+command with subcommands instead, which is the better shape for a tool people
+install.
 
 Rather than choose, this package ships both. The three scripts below are thin
-argument translators over the same engine, so a reader following the paper types
-the commands the paper prints and gets the results the paper reports.
+argument translators over the same engine, so the documented commands keep
+working and produce the documented results.
 
-Nothing here re-implements linting or fixing. Each script parses the flags the
-paper documents, maps them onto the package's own options, and delegates.
+Nothing here re-implements linting or fixing. Each script parses its own flags,
+maps them onto the package's own options, and delegates.
 """
 
 import argparse
@@ -18,7 +18,7 @@ import sys
 
 from unifiedbddlinter import cli as _cli
 
-# Rule families, as the paper names them. `quality` is the business-readability
+# Rule families, by their documented names. `quality` is the business-readability
 # family that linter.py runs and cli.py does not.
 STYLE = ["S001", "S002", "S003", "S004", "S005", "S006", "T006"]
 WORKFLOW = ["W001", "W002", "W003", "W004", "W005", "W006"]
@@ -31,13 +31,13 @@ FIX_CLASSES = {
     # W005 (trailing full stop) was withdrawn after it was shown to break
     # Cucumber step-definition binding: the step text is the string the runtime
     # matches on. It is now detect-only, so --no-periods has nothing to switch
-    # off. The flag is still accepted so commands printed in the paper run.
+    # off. The flag is still accepted so the documented commands run.
     "periods": [],
 }
 
 
 def add_lint_flags(parser: argparse.ArgumentParser) -> None:
-    """The `Linting` block of Table 2, shared by linter.py and cli.py."""
+    """The shared linting flags, used by both linter.py and cli.py."""
     parser.add_argument("path", help=".feature file or directory")
     parser.add_argument("--format", choices=["text", "json", "sarif"],
                         default="text", help="output format (default: text)")

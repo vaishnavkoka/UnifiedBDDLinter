@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Form-preserving auto-fixer -- entry point 3 of 3 (paper, Section 5.C.2).
+"""Form-preserving auto-fixer -- entry point 3 of 3.
 
 Applies an ordered sequence of mechanical, meaning-preserving transforms and
 writes the corrected specifications to a new directory. The input is never
@@ -54,7 +54,7 @@ def main(argv=None) -> int:
         if getattr(args, f"no_{name.replace('-', '_')}"):
             if not rule_ids:
                 # --no-periods survives as an accepted flag only so that the
-                # command line printed in the paper still runs. The repair it
+                # documented command line still runs. The repair it
                 # named was withdrawn, so there is nothing to switch off, and
                 # saying so is better than silently accepting a no-op.
                 print(f"auto_fix.py: note: --no-{name} has no effect; the "

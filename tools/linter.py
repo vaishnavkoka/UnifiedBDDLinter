@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprehensive linter -- entry point 1 of 3 (paper, Section 5.C.1).
+"""Comprehensive linter -- entry point 1 of 3.
 
 Evaluates .feature files against all four rule families, including the quality
 (business-readability) checks that no external linter provides.

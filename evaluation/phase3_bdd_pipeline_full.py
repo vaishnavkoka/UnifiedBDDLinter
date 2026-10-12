@@ -412,7 +412,7 @@ def write_provenance(destination: Path, args, environment, counts, elapsed):
 def main() -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    # -r/--repos-root and -o are the spellings printed in the paper (Table 2);
+    # -r/--repos-root and -o are the documented spellings;
     # --corpus/--output are this harness's own names. Both work.
     parser.add_argument("--corpus", "-r", "--repos-root", required=True,
                         help="working copy of the corpus (see corpus/materialise.py). "
