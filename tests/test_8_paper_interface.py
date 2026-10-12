@@ -1,6 +1,6 @@
 """The three entry points the paper documents must keep working.
 
-The paper prints four commands a reader (or a demo video) will type verbatim:
+The four commands a reader will type verbatim:
 
     python3 linter.py features/
     python3 cli.py features/ --format json
