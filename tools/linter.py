@@ -20,6 +20,7 @@ _SRC = Path(__file__).resolve().parent.parent / "src"
 if _SRC.is_dir() and str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
+from unifiedbddlinter.cli import run_and_exit
 from unifiedbddlinter._compat import add_lint_flags, run_lint
 
 
@@ -34,4 +35,4 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    run_and_exit(main)

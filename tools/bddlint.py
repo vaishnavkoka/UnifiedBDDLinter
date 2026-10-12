@@ -42,7 +42,7 @@ if sys.version_info < (3, 8):
     sys.exit(f"bddlint: Python 3.8 or newer required, found "
              f"{sys.version_info.major}.{sys.version_info.minor}")
 
-from unifiedbddlinter.cli import main  # noqa: E402  (import follows path setup)
+from unifiedbddlinter.cli import main, run_and_exit  # noqa: E402  (import follows path setup)
 
 if __name__ == "__main__":
-    sys.exit(main())
+    run_and_exit(main)

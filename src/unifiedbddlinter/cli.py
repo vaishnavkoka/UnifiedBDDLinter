@@ -32,6 +32,7 @@ did, means a crashed linter looks exactly like a failing build and gets
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -357,5 +358,23 @@ def main(argv=None) -> int:
         return EXIT_ERROR
 
 
+def run_and_exit(entry, *args, **kwargs):
+    """Run an entry point and exit, treating a closed stdout as success.
+
+    `bddlint lint ... | head` closes the pipe before the writer has finished.
+    Catching BrokenPipeError inside the command is not enough: Python flushes
+    stdout again when the interpreter shuts down, raises a second time, and
+    prints "Exception ignored in: ..." after the command has already returned.
+    Flushing here, inside the guard, leaves that final flush nothing to write.
+    """
+    try:
+        code = entry(*args, **kwargs)
+        sys.stdout.flush()
+    except BrokenPipeError:
+        os.dup2(os.open(os.devnull, os.O_WRONLY), sys.stdout.fileno())
+        code = EXIT_OK
+    sys.exit(code)
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    run_and_exit(main)
