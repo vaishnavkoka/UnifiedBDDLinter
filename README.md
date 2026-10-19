@@ -2,7 +2,7 @@
 
 **A linter and form-preserving auto-fixer for Gherkin `.feature` files.**
 
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22715477-0f62fe.svg)](https://doi.org/10.5281/zenodo.22715477)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23309593-0f62fe.svg)](https://doi.org/10.5281/zenodo.23309593)
 [![Demo](https://img.shields.io/badge/demo-pending-lightgrey.svg)](#data-availability)
 [![Release](https://img.shields.io/github/v/release/vaishnavkoka/UnifiedBDDLinter?color=1b9e77&label=release)](https://github.com/vaishnavkoka/UnifiedBDDLinter/releases/latest)
 [![Tests](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml/badge.svg)](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml)
@@ -294,14 +294,12 @@ measured, so the exact contents behind these numbers stay identifiable.
 The complete per-file measurements, the repaired corpus, and the second run used
 for the filename-conflict comparison are archived on Zenodo:
 
-> **Dataset (Zenodo), v1.1:** https://doi.org/10.5281/zenodo.23309593
->
-> **All versions:** https://doi.org/10.5281/zenodo.22715477
+> **Dataset (Zenodo):** https://doi.org/10.5281/zenodo.23309593
 >
 > **Video demonstration:** [TBD]
 
-The first DOI names the exact deposit this release was measured against. The
-second always resolves to the most recent version.
+That DOI names the v1.1 deposit, the exact archive this release was measured
+against.
 
 This repository carries the headline figures, the per-repository table, a sample
 of the per-file rows, and the list of files measured. Column meanings are
