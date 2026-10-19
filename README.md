@@ -294,7 +294,7 @@ measured, so the exact contents behind these numbers stay identifiable.
 The complete per-file measurements, the repaired corpus, and the second run used
 for the filename-conflict comparison are archived on Zenodo:
 
-> **Dataset (Zenodo):** [TBD]
+> **Dataset (Zenodo):** https://doi.org/10.5281/zenodo.22715478
 >
 > **Video demonstration:** [TBD]
 
