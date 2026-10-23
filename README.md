@@ -3,7 +3,7 @@
 **A linter and form-preserving auto-fixer for Gherkin `.feature` files.**
 
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23309593-0f62fe.svg)](https://doi.org/10.5281/zenodo.23309593)
-[![Demo](https://img.shields.io/badge/demo-pending-lightgrey.svg)](#data-availability)
+[![Demo](https://img.shields.io/badge/demo-watch-FF0000?logo=youtube&logoColor=white)](https://youtu.be/N8-ylF9mgIE)
 [![Release](https://img.shields.io/github/v/release/vaishnavkoka/UnifiedBDDLinter?color=1b9e77&label=release)](https://github.com/vaishnavkoka/UnifiedBDDLinter/releases/latest)
 [![Tests](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml/badge.svg)](https://github.com/vaishnavkoka/UnifiedBDDLinter/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -295,7 +295,7 @@ The complete per-file measurements, the repaired corpus, and the second run used
 for the filename-conflict comparison are archived on Zenodo:
 
 > **Dataset (Zenodo):** https://doi.org/10.5281/zenodo.23309593
->
+
 [![UnifiedBDDLinter — tool demonstration](https://img.youtube.com/vi/N8-ylF9mgIE/maxresdefault.jpg)](https://youtu.be/N8-ylF9mgIE)
 
 That DOI names the v1.1 deposit, the exact archive this release was measured
