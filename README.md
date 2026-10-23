@@ -295,8 +295,13 @@ The complete per-file measurements, the repaired corpus, and the second run used
 for the filename-conflict comparison are archived on Zenodo:
 
 > **Dataset (Zenodo):** https://doi.org/10.5281/zenodo.23309593
+>
+> **Video demonstration (YouTube):** https://youtu.be/N8-ylF9mgIE
 
-[![UnifiedBDDLinter — tool demonstration](https://img.youtube.com/vi/N8-ylF9mgIE/maxresdefault.jpg)](https://youtu.be/N8-ylF9mgIE)
+![UnifiedBDDLinter repairing a feature file](docs/demo.gif)
+
+[![Watch the full five-minute demonstration](https://img.youtube.com/vi/N8-ylF9mgIE/maxresdefault.jpg)](https://youtu.be/N8-ylF9mgIE)
+
 
 That DOI names the v1.1 deposit, the exact archive this release was measured
 against.
