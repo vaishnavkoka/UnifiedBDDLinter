@@ -26,6 +26,18 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python-version: ["3.8", "3.11", "3.13"]
+        # ubuntu-latest moved to Ubuntu 26.04, which ships no Python 3.8
+        # build (3.8 went end-of-life in October 2024). The interpreter
+        # cannot be installed, so that one combination is pinned to 22.04
+        # rather than dropped -- the README and the paper both claim 3.8+,
+        # and this matrix is the evidence for that claim.
+        exclude:
+          - os: ubuntu-latest
+            python-version: "3.8"
+        include:
+          - os: ubuntu-22.04
+            python-version: "3.8"
+
 
     steps:
       - uses: actions/checkout@v4
