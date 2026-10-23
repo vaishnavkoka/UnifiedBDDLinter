@@ -296,7 +296,7 @@ for the filename-conflict comparison are archived on Zenodo:
 
 > **Dataset (Zenodo):** https://doi.org/10.5281/zenodo.23309593
 >
-> **Video demonstration:** [TBD]
+> **Video demonstration:** (https://youtu.be/N8-ylF9mgIE)]
 
 That DOI names the v1.1 deposit, the exact archive this release was measured
 against.
