@@ -146,7 +146,7 @@ repaired file is re-parsed with the official Gherkin parser and compared with it
 original on the fields the runtime uses — feature name, tags, background steps,
 scenario names, step text.
 
-| | |
+| Check | Result |
 |---|--:|
 | files with a **content edit** | **0** |
 | files the parser can process | 19,492 |
